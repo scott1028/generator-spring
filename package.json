@@ -1,0 +1,38 @@
+{
+  "name": "generator-spring",
+  "version": "0.0.0",
+  "description": "A generator for Yeoman",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "homepage": "https://github.com/countableSet/generator-spring",
+  "bugs": "https://github.com/countableSet/generator-spring/issues",
+  "author": {
+    "name": "Rachel Aurand",
+    "email": "",
+    "url": "https://github.com/countableSet"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/countableSet/generator-spring.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.12.0",
+    "underscore": "latest"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
