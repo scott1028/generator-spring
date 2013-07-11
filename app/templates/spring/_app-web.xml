@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<!-- Defines the web package to scan for annotation -->
-	<context:component-scan base-package="edu.ucdavis.its.safetyinspection, edu.ucdavis.its.ehs" />
+	<context:component-scan base-package="<%= basePackage %>, <%= corePackage %>" />
 		
 	<!-- allow @Async -->
 	<!-- <task:annotation-driven/> -->
@@ -24,7 +24,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<mvc:interceptors>
@@ -39,7 +39,7 @@
 			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 	<!-- Resolves views  -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
         <property name="order" value="0"/>
@@ -55,7 +55,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-    <bean id="restExceptionResolver" class="edu.ucdavis.its.safetyinspection.web.helper.RestExceptionHandler">
+    <bean id="restExceptionResolver" class="<%= basePackage %>.web.helper.RestExceptionHandler">
         <property name="order" value="100"/>
     </bean>
         	
@@ -72,12 +72,12 @@
 	<beans profile="local">
 		<!-- Define property placeholder -->
 		<context:property-placeholder location="
-			classpath:safetyinspection.dev.properties,
-			file:///${user.home}/localconfigs/safetyinspection.override.properties"  
+			classpath:<%= extras.name %>.dev.properties,
+			file:///<%= _.unescape('${user.home}') %>/localconfigs/<%= extras.name %>.override.properties"
 			ignore-resource-not-found="true" />
 	</beans>
 	<beans profile="dev,stage,demo,prod">
-		<context:property-placeholder location="classpath:safetyinspection.${spring.profiles.active}.properties" />
+		<context:property-placeholder location="classpath:<%= extras.name %>.<%= _.unescape('${spring.profiles.active}') %>.properties" />
 	</beans>
-					
+
  </beans>

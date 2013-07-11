@@ -36,7 +36,7 @@
 
 	<bean id="authenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
 		<property name="preAuthenticatedUserDetailsService">
-			<bean class="edu.ucdavis.its.ehs.service.UserDetailsService"/>
+			<bean class="<%= corePackage %>.service.UserDetailsService"/>
 		</property>
 	</bean>	
 </beans>

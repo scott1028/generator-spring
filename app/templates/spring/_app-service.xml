@@ -33,18 +33,18 @@
 	</bean>	
 
 	<bean id="stringEncrypterService" class="edu.ucdavis.its.authpack.service.impl.StringEncrypterServiceImpl" init-method="init">
-		<property name="configEncryptionKey" value="${edu.ucdavis.its.authpack.configEncryptionKey}" />
-		<property name="configEncryptionCharsetName" value="${edu.ucdavis.its.authpack.configEncryptionCharsetName}" />
-		<property name="configEncryptionDigestAlgorithm" value="${edu.ucdavis.its.authpack.configEncryptionDigestAlgorithm}" />
-		<property name="configEncryptionKeyAlgorithm" value="${edu.ucdavis.its.authpack.configEncryptionKeyAlgorithm}" />
-		<property name="configEncryptionCipherAlgorithm" value="${edu.ucdavis.its.authpack.configEncryptionCipherAlgorithm}" />
+		<property name="configEncryptionKey" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptionKey}') %>" />
+		<property name="configEncryptionCharsetName" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptionCharsetName}') %>" />
+		<property name="configEncryptionDigestAlgorithm" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptionDigestAlgorithm}') %>" />
+		<property name="configEncryptionKeyAlgorithm" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptionKeyAlgorithm}') %>" />
+		<property name="configEncryptionCipherAlgorithm" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptionCipherAlgorithm}') %>" />
 	</bean>
 
 	<bean id="shibHandlerService" class="edu.ucdavis.its.authpack.service.impl.ShibHandlerServiceImpl" init-method="init">
-		<property name="configShibAttributeTypesString" value="${edu.ucdavis.its.authpack.configShibAttributeTypes}" />
-		<property name="configCheckToken" value="${edu.ucdavis.its.authpack.configCheckToken}" />
-		<property name="configTokenMaxAge" value="${edu.ucdavis.its.authpack.configTokenMaxAge}" />
-		<property name="configEncryptedPostData" value="${edu.ucdavis.its.authpack.configEncryptedPostData}" />
+		<property name="configShibAttributeTypesString" value="<%= _.unescape('${edu.ucdavis.its.authpack.configShibAttributeTypes}') %>" />
+		<property name="configCheckToken" value="<%= _.unescape('${edu.ucdavis.its.authpack.configCheckToken}') %>" />
+		<property name="configTokenMaxAge" value="<%= _.unescape('${edu.ucdavis.its.authpack.configTokenMaxAge}') %>" />
+		<property name="configEncryptedPostData" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptedPostData}') %>" />
 		<property name="stringEncrypter" ref="stringEncrypterService" />
 		<property name="tokenCacheConfigurationName" value="tokenCache" />
 		<property name="cacheManager" ref="tokenCacheManager" />

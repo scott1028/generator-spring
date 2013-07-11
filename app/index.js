@@ -37,7 +37,7 @@ SpringGenerator.prototype.askFor = function askFor() {
 	}, {
 		name: 'corePackage',
 		message: 'What is the core package name (com.example.core)?',
-		default: 'com.ucdavis.its.core'
+		default: 'edu.ucdavis.its.core'
 	}];
 
 	this.prompt(prompts, function (props) {
@@ -165,6 +165,9 @@ SpringGenerator.prototype.app = function app() {
 	this.copy('spring/orm.xml', path + 'META-INF/orm.xml');
 	this.copy('spring/persistence.xml', path + 'META-INF/persistence.xml');
 	this.template('spring/_app-data.xml', path + 'spring/app-data.xml');
+	this.template('spring/_app-security.xml', path + 'spring/app-security.xml');
+	this.template('spring/_app-service.xml', path + 'spring/app-service.xml');
+	this.template('spring/_app-web.xml', path + 'spring/app-web.xml');
 };
 
 SpringGenerator.prototype.other = function other() {
