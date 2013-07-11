@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+	
+	<jpa:repositories base-package="<%= basePackage %>.data, <%= corePackage %>.data" factory-class="<%= corePackage %>.data.CustomJpaRepositoryFactoryBean"/>
+	
+	<jpa:auditing auditor-aware-ref="springSecurityAuditorAware" />
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="<%= extras.name %>" />
+		<property name="packagesToScan" value="<%= basePackage %>.domain, <%= corePackage %>.domain" />
+		<property name="jpaProperties">
+			<props>
+	            <prop key="hibernate.dialect"><%= _.unescape('${hibernate.dialect}') %></prop>
+	            <prop key="hibernate.default_schema"><%= _.unescape('${hibernate.default_schema}') %></prop>
+	            <prop key="hibernate.show_sql"><%= _.unescape('${hibernate.show_sql}') %></prop>
+	            <prop key="hibernate.hbm2ddl.auto"><%= _.unescape('${hibernate.hbm2ddl.auto}') %></prop>
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
+				<prop key="hibernate.ejb.naming_strategy"><%= corePackage %>.data.CustomNamingStrategy</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+	            <prop key="jadira.usertype.databaseZone">America/Los_Angeles</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+ 	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<beans profile="local">
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="<%= _.unescape('${jdbc.driver}') %>" />
+			<property name="url" value="<%= _.unescape('${jdbc.url}') %>" />
+			<property name="username" value="<%= _.unescape('${jdbc.user}') %>" />
+			<property name="password" value="<%= _.unescape('${jdbc.password}') %>" />
+		</bean>  
+	</beans>
+	<beans profile="dev,stage,demo,prod">
+		<jee:jndi-lookup id="dataSource" jndi-name="jdbc/<%= extras.name %>" />
+	</beans>
+
+</beans>

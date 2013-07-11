@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<!-- Defines the web package to scan for annotation -->
+	<context:component-scan base-package="edu.ucdavis.its.safetyinspection, edu.ucdavis.its.ehs" />
+		
+	<!-- allow @Async -->
+	<!-- <task:annotation-driven/> -->
+	
+	<!-- enable spring caching abstraction -->
+	<cache:annotation-driven />
+		
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/api/**/*" />
+			<bean id="webContentInterceptor"
+				class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+				<property name="cacheSeconds" value="0" />
+				<property name="useExpiresHeader" value="true" />
+				<property name="useCacheControlHeader" value="true" />
+				<property name="useCacheControlNoStore" value="true" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- Resolves views  -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+        <property name="order" value="0"/>
+    </bean>
+    
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" >
+		<property name="order" value="1"/>
+	</bean>    
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2"/>
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+    <bean id="restExceptionResolver" class="edu.ucdavis.its.safetyinspection.web.helper.RestExceptionHandler">
+        <property name="order" value="100"/>
+    </bean>
+        	
+	<!-- Apache Tiles -->
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/layout/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- properties files -->
+	<beans profile="local">
+		<!-- Define property placeholder -->
+		<context:property-placeholder location="
+			classpath:safetyinspection.dev.properties,
+			file:///${user.home}/localconfigs/safetyinspection.override.properties"  
+			ignore-resource-not-found="true" />
+	</beans>
+	<beans profile="dev,stage,demo,prod">
+		<context:property-placeholder location="classpath:safetyinspection.${spring.profiles.active}.properties" />
+	</beans>
+					
+ </beans>

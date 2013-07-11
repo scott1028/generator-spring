@@ -24,37 +24,61 @@ SpringGenerator.prototype.askFor = function askFor() {
 
 	var prompts = [{
 		name: 'projectName',
-		message: 'What is the project name?'
+		message: 'What is the project name?',
+		default: 'Safety Inspection'
+	}, {
+		name: 'abbreviation',
+		message: 'What is the project abbreviation?',
+		default: 'SIT'
 	}, {
 		name: 'basePackage',
-		message: 'What is the base project package name (com.example.projectname)?'
+		message: 'What is the base project package name (com.example.projectname)?',
+		default: 'edu.ucdavis.its.safetyinspection'
 	}, {
-		type: 'confirm',
-		name: 'coreTest',
-		message: 'What you like to make a core package (com.example.core)?',
-		default: true
+		name: 'corePackage',
+		message: 'What is the core package name (com.example.core)?',
+		default: 'com.ucdavis.its.core'
 	}];
 
 	this.prompt(prompts, function (props) {
 		this.projectName = props.projectName;
+		this.abbreviation = props.abbreviation;
 		this.basePackage = props.basePackage;
-		this.coreTest = props.coreTest;
+		this.corePackage = props.corePackage;
 		cb();
 	}.bind(this));
 };
 
-SpringGenerator.prototype.corePackage = function corePackage() {
-	if (!this.coreTest) {
-		return;
-	}
+SpringGenerator.prototype.properties = function properties() {
 	var cb = this.async();
 	var prompts = [{
-		name: 'corePackage',
-		message: 'What is the core package name (com.example.core)?'
+		name: 'dbUrl',
+		message: 'Database: What is the database url?',
+		default: '132.249.232.144'
+	}, {
+		name: 'dbName',
+		message: 'Database: What is the base database name?',
+		default: 'PS'
+	}, {
+		name: 'dbUser',
+		message: 'Database: What is the database username?',
+		default: 'safetyinspection'
+	}, {
+		name: 'dbPassword',
+		message: 'Database: What is the database password?',
+		default: 'safetyinspection'
+	}, {
+		name: 'siteTitle',
+		message: 'What is the project site title?',
+		default: 'Safety Inspection Tool'
 	}];
 
 	this.prompt(prompts, function (props) {
-		this.corePackage = props.corePackage;
+		this.dbUrl = props.dbUrl;
+		this.dbName = props.dbName;
+		this.dbUser = props.dbUser;
+		this.dbPassword = props.dbPassword;
+		this.siteTitle = props.siteTitle;
 		cb();
 	}.bind(this));
 };
@@ -65,7 +89,7 @@ SpringGenerator.prototype.structure = function structure() {
 	this.mkdir('src/main/java');
 	this.mkdir('src/main/resources');
 	this.mkdir('src/main/resources/META-INF');
-	this.mkdir('src/main/resources/sping');
+	this.mkdir('src/main/resources/spring');
 	this.mkdir('src/main/webapp');
 	this.mkdir('src/main/webapp/WEB-INF');
 	this.mkdir('src/main/webapp/resources');
@@ -78,7 +102,7 @@ SpringGenerator.prototype.structure = function structure() {
 };
 
 SpringGenerator.prototype.appPackages = function appPackages() {
-	var basePackageSplit = this.basePackage.split('.');
+	var basePackageSplit = this.basePackage.toLowerCase().split('.');
 	var mainPath = 'src/main/java/';
 	var testPath = 'src/test/java/';
 	_.each(basePackageSplit, function (item) {
@@ -94,48 +118,56 @@ SpringGenerator.prototype.appPackages = function appPackages() {
 		this.mkdir(testPath + item);
 	}, this);
 
-	if (this.coreTest) {
-		var corePackageSplit = this.corePackage.split('.');
-		mainPath = 'src/main/java/';
-		testPath = 'src/test/java/';
-		_.each(corePackageSplit, function (item) {
-			this.mkdir(mainPath + item);
-			this.mkdir(testPath + item);
-			mainPath += item + '/';
-			testPath += item + '/';
-		}, this);
+	var corePackageSplit = this.corePackage.toLowerCase().split('.');
+	mainPath = 'src/main/java/';
+	testPath = 'src/test/java/';
+	_.each(corePackageSplit, function (item) {
+		this.mkdir(mainPath + item);
+		this.mkdir(testPath + item);
+		mainPath += item + '/';
+		testPath += item + '/';
+	}, this);
 
-		var corePackages = ['data', 'domain', 'security', 'service', 'testing'];
-		_.each(corePackages, function (item) {
-			this.mkdir(mainPath + item);
-		}, this);
-	}
+	var corePackages = ['data', 'domain', 'security', 'service', 'testing'];
+	_.each(corePackages, function (item) {
+		this.mkdir(mainPath + item);
+	}, this);
 };
 
 SpringGenerator.prototype.app = function app() {
 	var name = this.projectName.toLowerCase().replace(' ', '');
+	var path = 'src/main/resources/';
 
-	// name.dev.properties
-	// name.prod.properties
-	// name.stage.properties
-	// log4j.properties
-	console.log(name);
+	this.extras = {
+		name: name,
+		schema: this.projectName.replace(' ', ''),
+		type: 'dev',
+		typeLong: 'Development',
+		updateType: 'UPDATE'
+	};
+	this.copy('spring/temp.properties', path + name + '.dev.properties');
+	this.extras = {
+		name: name,
+		schema: this.projectName.replace(' ', ''),
+		type: 'stage',
+		typeLong: 'Stage',
+		updateType: ''
+	};
+	this.copy('spring/temp.properties', path + name + '.stage.properties');
+	this.extras = {
+		name: name,
+		schema: this.projectName.replace(' ', ''),
+	};
+	this.copy('spring/prod.properties', path + name + '.prod.properties');
+
+	this.copy('spring/log4j.properties', path + 'log4j.properties');
+	this.copy('spring/ehsCache.xml', path + 'ehsCache.xml');
+	this.copy('spring/orm.xml', path + 'META-INF/orm.xml');
+	this.copy('spring/persistence.xml', path + 'META-INF/persistence.xml');
+	this.template('spring/_app-data.xml', path + 'spring/app-data.xml');
 };
 
 SpringGenerator.prototype.other = function other() {
 	this.copy('_package.json', 'package.json');
 	this.copy('_bower.json', 'bower.json');
 };
-
-// SpringGenerator.prototype.app = function app() {
-// 	this.mkdir('app');
-// 	this.mkdir('app/templates');
-
-// 	this.copy('_package.json', 'package.json');
-// 	this.copy('_bower.json', 'bower.json');
-// };
-
-// SpringGenerator.prototype.projectfiles = function projectfiles() {
-// 	this.copy('editorconfig', '.editorconfig');
-// 	this.copy('jshintrc', '.jshintrc');
-// };
