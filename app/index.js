@@ -93,6 +93,7 @@ SpringGenerator.prototype.structure = function structure() {
 	this.mkdir('src/main/webapp');
 	this.mkdir('src/main/webapp/WEB-INF');
 	this.mkdir('src/main/webapp/resources');
+	this.mkdir('src/main/webapp/components');
 
 	this.mkdir('src/test');
 	this.mkdir('src/test/java');
@@ -206,4 +207,5 @@ SpringGenerator.prototype.javaFiles = function javaFiles() {
 SpringGenerator.prototype.other = function other() {
 	this.copy('_package.json', 'package.json');
 	this.copy('_bower.json', 'bower.json');
+	this.copy('_bowerrc', '.bowerrc');
 };

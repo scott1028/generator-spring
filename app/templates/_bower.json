@@ -1,6 +1,12 @@
 {
-  "name": "<%= _.slugify(projectName) %>",
-  "version": "0.0.0",
-  "dependencies": {}
+	"name": "<%= _.slugify(projectName) %>",
+	"version": "0.0.1",
+	"dependencies": {
+		"angular": "latest",
+		"angular-resource": "latest",
+		"bootstrap": "latest",
+		"angular-mocks": "latest",
+		"angular-scenario": "latest"
+	}
 }
 
