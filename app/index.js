@@ -102,15 +102,10 @@ SpringGenerator.prototype.structure = function structure() {
 };
 
 SpringGenerator.prototype.appPackages = function appPackages() {
-	var basePackageSplit = this.basePackage.toLowerCase().split('.');
-	var mainPath = 'src/main/java/';
-	var testPath = 'src/test/java/';
-	_.each(basePackageSplit, function (item) {
-		this.mkdir(mainPath + item);
-		this.mkdir(testPath + item);
-		mainPath += item + '/';
-		testPath += item + '/';
-	}, this);
+	var mainPath = 'src/main/java/' + this.basePackage.toLowerCase().split('.').join('/') + '/';
+	var testPath = 'src/test/java/' + this.basePackage.toLowerCase().split('.').join('/') + '/';
+	this.mkdir(mainPath);
+	this.mkdir(testPath);
 
 	var mvcPackages = ['data', 'domain', 'service', 'web'];
 	_.each(mvcPackages, function (item) {
@@ -118,15 +113,10 @@ SpringGenerator.prototype.appPackages = function appPackages() {
 		this.mkdir(testPath + item);
 	}, this);
 
-	var corePackageSplit = this.corePackage.toLowerCase().split('.');
-	mainPath = 'src/main/java/';
-	testPath = 'src/test/java/';
-	_.each(corePackageSplit, function (item) {
-		this.mkdir(mainPath + item);
-		this.mkdir(testPath + item);
-		mainPath += item + '/';
-		testPath += item + '/';
-	}, this);
+	mainPath = 'src/main/java/' + this.corePackage.toLowerCase().split('.').join('/') + '/';
+	testPath = 'src/test/java/' + this.corePackage.toLowerCase().split('.').join('/') + '/';
+	this.mkdir(mainPath);
+	this.mkdir(testPath);
 
 	var corePackages = ['data', 'domain', 'security', 'service', 'testing'];
 	_.each(corePackages, function (item) {
@@ -135,12 +125,12 @@ SpringGenerator.prototype.appPackages = function appPackages() {
 };
 
 SpringGenerator.prototype.app = function app() {
-	var name = this.projectName.toLowerCase().replace(' ', '');
+	var name = this.projectName.toLowerCase().split(' ').join('');
 	var path = 'src/main/resources/';
 
 	this.extras = {
 		name: name,
-		schema: this.projectName.replace(' ', ''),
+		schema: this.projectName.split(' ').join(''),
 		type: 'dev',
 		typeLong: 'Development',
 		updateType: 'UPDATE'
@@ -148,7 +138,7 @@ SpringGenerator.prototype.app = function app() {
 	this.copy('spring/temp.properties', path + name + '.dev.properties');
 	this.extras = {
 		name: name,
-		schema: this.projectName.replace(' ', ''),
+		schema: this.projectName.split(' ').join(''),
 		type: 'stage',
 		typeLong: 'Stage',
 		updateType: ''
@@ -156,7 +146,7 @@ SpringGenerator.prototype.app = function app() {
 	this.copy('spring/temp.properties', path + name + '.stage.properties');
 	this.extras = {
 		name: name,
-		schema: this.projectName.replace(' ', ''),
+		schema: this.projectName.split(' ').join('')
 	};
 	this.copy('spring/prod.properties', path + name + '.prod.properties');
 
@@ -168,6 +158,40 @@ SpringGenerator.prototype.app = function app() {
 	this.template('spring/_app-security.xml', path + 'spring/app-security.xml');
 	this.template('spring/_app-service.xml', path + 'spring/app-service.xml');
 	this.template('spring/_app-web.xml', path + 'spring/app-web.xml');
+};
+
+SpringGenerator.prototype.javaFiles = function javaFiles() {
+	var corePath = 'src/main/java/' + this.corePackage.toLowerCase().split('.').join('/');
+	this.template('classes/core/data/ControlCodeEnumUserType.java', corePath + '/data/ControlCodeEnumUserType.java');
+	this.template('classes/core/data/CustomJpaRepository.java', corePath + '/data/CustomJpaRepository.java');
+	this.template('classes/core/data/CustomJpaRepositoryFactoryBean.java', corePath + '/data/CustomJpaRepositoryFactoryBean.java');
+	this.template('classes/core/data/CustomJpaRepositoryImpl.java', corePath + '/data/CustomJpaRepositoryImpl.java');
+	this.template('classes/core/data/CustomNamingStrategy.java', corePath + '/data/CustomNamingStrategy.java');
+	this.template('classes/core/data/CustomSQLServer2008Dialect.java', corePath + '/data/CustomSQLServer2008Dialect.java');
+	this.template('classes/core/data/package-info.java', corePath + '/data/package-info.java');
+	this.template('classes/core/data/PermissionDeniedException.java', corePath + '/data/PermissionDeniedException.java');
+	this.template('classes/core/data/RecordNotFoundException.java', corePath + '/data/RecordNotFoundException.java');
+
+	this.template('classes/core/domain/AuditableEntity.java', corePath + '/domain/AuditableEntity.java');
+	this.template('classes/core/domain/BaseEntity.java', corePath + '/domain/BaseEntity.java');
+	this.template('classes/core/domain/BaseObject.java', corePath + '/domain/BaseObject.java');
+	this.template('classes/core/domain/ControlCode.java', corePath + '/domain/ControlCode.java');
+	this.template('classes/core/domain/ControlCodeConverterFactory.java', corePath + '/domain/ControlCodeConverterFactory.java');
+	this.template('classes/core/domain/EnumWithDescription.java', corePath + '/domain/EnumWithDescription.java');
+	this.template('classes/core/domain/StringToEnumConverter.java', corePath + '/domain/StringToEnumConverter.java');
+
+	this.template('classes/core/security/SpringSecurityAuditorAware.java', corePath + '/security/SpringSecurityAuditorAware.java');
+
+	this.template('classes/core/service/BaseService.java', corePath + '/service/BaseService.java');
+	this.template('classes/core/service/BaseServiceImpl.java', corePath + '/service/BaseServiceImpl.java');
+
+	this.template('classes/core/testing/MockAuditorAware.java', corePath + '/testing/MockAuditorAware.java');
+
+	var mainPath = 'src/main/java/' + this.basePackage.toLowerCase().split('.').join('/');
+	this.template('classes/web/HomeController.java', mainPath + '/web/HomeController.java');
+	this.template('classes/web/helper/JspHelper.java', mainPath + '/web/helper/JspHelper.java');
+	this.template('classes/web/helper/RestError.java', mainPath + '/web/helper/RestError.java');
+	this.template('classes/web/helper/RestExceptionHandler.java', mainPath + '/web/helper/RestExceptionHandler.java');
 };
 
 SpringGenerator.prototype.other = function other() {
