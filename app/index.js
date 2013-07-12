@@ -54,11 +54,11 @@ SpringGenerator.prototype.properties = function properties() {
 	var prompts = [{
 		name: 'dbUrl',
 		message: 'Database: What is the database url?',
-		default: '132.249.232.144'
+		default: '192.168.56.111'
 	}, {
 		name: 'dbName',
 		message: 'Database: What is the base database name?',
-		default: 'PS'
+		default: 'SIT'
 	}, {
 		name: 'dbUser',
 		message: 'Database: What is the database username?',
@@ -158,6 +158,7 @@ SpringGenerator.prototype.app = function app() {
 	this.template('spring/_app-security.xml', path + 'spring/app-security.xml');
 	this.template('spring/_app-service.xml', path + 'spring/app-service.xml');
 	this.template('spring/_app-web.xml', path + 'spring/app-web.xml');
+	this.template('spring/_web.xml', 'src/main/webapp/WEB-INF/web.xml');
 };
 
 SpringGenerator.prototype.javaFiles = function javaFiles() {
@@ -189,6 +190,7 @@ SpringGenerator.prototype.javaFiles = function javaFiles() {
 	this.template('classes/core/service/BaseServiceImpl.java', corePath + '/service/BaseServiceImpl.java');
 	this.template('classes/core/service/PersonService.java', corePath + '/service/PersonService.java');
 	this.template('classes/core/service/PersonServiceImpl.java', corePath + '/service/PersonServiceImpl.java');
+	this.template('classes/core/service/UserDetailsService.java', corePath + '/service/UserDetailsService.java');
 
 	this.template('classes/core/testing/MockAuditorAware.java', corePath + '/testing/MockAuditorAware.java');
 
