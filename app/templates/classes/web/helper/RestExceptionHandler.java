@@ -26,7 +26,7 @@ public class RestExceptionHandler extends AbstractHandlerExceptionResolver {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RestExceptionHandler.class);
 
-	@Value("${spring.profiles.active}") private String profile;
+	@Value("<%= _.unescape('${spring.profiles.active}') %>") private String profile;
 	
 	@Override
 	protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {

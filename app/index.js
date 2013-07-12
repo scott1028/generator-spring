@@ -168,9 +168,11 @@ SpringGenerator.prototype.javaFiles = function javaFiles() {
 	this.template('classes/core/data/CustomJpaRepositoryImpl.java', corePath + '/data/CustomJpaRepositoryImpl.java');
 	this.template('classes/core/data/CustomNamingStrategy.java', corePath + '/data/CustomNamingStrategy.java');
 	this.template('classes/core/data/CustomSQLServer2008Dialect.java', corePath + '/data/CustomSQLServer2008Dialect.java');
+	this.template('classes/core/data/IdpInfoEnumUserType.java', corePath + '/data/IdpInfoEnumUserType.java');
 	this.template('classes/core/data/package-info.java', corePath + '/data/package-info.java');
 	this.template('classes/core/data/PermissionDeniedException.java', corePath + '/data/PermissionDeniedException.java');
 	this.template('classes/core/data/RecordNotFoundException.java', corePath + '/data/RecordNotFoundException.java');
+	this.template('classes/core/data/PersonRepository.java', corePath + '/data/PersonRepository.java');
 
 	this.template('classes/core/domain/AuditableEntity.java', corePath + '/domain/AuditableEntity.java');
 	this.template('classes/core/domain/BaseEntity.java', corePath + '/domain/BaseEntity.java');
@@ -179,19 +181,24 @@ SpringGenerator.prototype.javaFiles = function javaFiles() {
 	this.template('classes/core/domain/ControlCodeConverterFactory.java', corePath + '/domain/ControlCodeConverterFactory.java');
 	this.template('classes/core/domain/EnumWithDescription.java', corePath + '/domain/EnumWithDescription.java');
 	this.template('classes/core/domain/StringToEnumConverter.java', corePath + '/domain/StringToEnumConverter.java');
+	this.template('classes/core/domain/Person.java', corePath + '/domain/Person.java');
 
 	this.template('classes/core/security/SpringSecurityAuditorAware.java', corePath + '/security/SpringSecurityAuditorAware.java');
 
 	this.template('classes/core/service/BaseService.java', corePath + '/service/BaseService.java');
 	this.template('classes/core/service/BaseServiceImpl.java', corePath + '/service/BaseServiceImpl.java');
+	this.template('classes/core/service/PersonService.java', corePath + '/service/PersonService.java');
+	this.template('classes/core/service/PersonServiceImpl.java', corePath + '/service/PersonServiceImpl.java');
 
 	this.template('classes/core/testing/MockAuditorAware.java', corePath + '/testing/MockAuditorAware.java');
 
 	var mainPath = 'src/main/java/' + this.basePackage.toLowerCase().split('.').join('/');
 	this.template('classes/web/HomeController.java', mainPath + '/web/HomeController.java');
-	this.template('classes/web/helper/JspHelper.java', mainPath + '/web/helper/JspHelper.java');
 	this.template('classes/web/helper/RestError.java', mainPath + '/web/helper/RestError.java');
 	this.template('classes/web/helper/RestExceptionHandler.java', mainPath + '/web/helper/RestExceptionHandler.java');
+
+	this.template('_index.jsp', 'src/main/webapp/WEB-INF/views/index.jsp');
+	this.template('spring/_pom.xml', 'pom.xml');
 };
 
 SpringGenerator.prototype.other = function other() {
