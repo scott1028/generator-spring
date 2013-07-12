@@ -93,7 +93,6 @@ SpringGenerator.prototype.structure = function structure() {
 	this.mkdir('src/main/webapp');
 	this.mkdir('src/main/webapp/WEB-INF');
 	this.mkdir('src/main/webapp/resources');
-	this.mkdir('src/main/webapp/components');
 
 	this.mkdir('src/test');
 	this.mkdir('src/test/java');
@@ -160,6 +159,11 @@ SpringGenerator.prototype.app = function app() {
 	this.template('spring/_app-service.xml', path + 'spring/app-service.xml');
 	this.template('spring/_app-web.xml', path + 'spring/app-web.xml');
 	this.template('spring/_web.xml', 'src/main/webapp/WEB-INF/web.xml');
+
+	this.template('_index.jsp', 'src/main/webapp/WEB-INF/views/index.jsp');
+	this.template('style/_bootstrap-override.css', 'src/main/webapp/resources/styles/bootstrap-override.css');
+	this.template('style/_project.css', 'src/main/webapp/resources/styles/project.css');
+	this.template('spring/_pom.xml', 'pom.xml');
 };
 
 SpringGenerator.prototype.javaFiles = function javaFiles() {
@@ -199,9 +203,6 @@ SpringGenerator.prototype.javaFiles = function javaFiles() {
 	this.template('classes/web/HomeController.java', mainPath + '/web/HomeController.java');
 	this.template('classes/web/helper/RestError.java', mainPath + '/web/helper/RestError.java');
 	this.template('classes/web/helper/RestExceptionHandler.java', mainPath + '/web/helper/RestExceptionHandler.java');
-
-	this.template('_index.jsp', 'src/main/webapp/WEB-INF/views/index.jsp');
-	this.template('spring/_pom.xml', 'pom.xml');
 };
 
 SpringGenerator.prototype.other = function other() {

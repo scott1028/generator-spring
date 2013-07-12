@@ -1,0 +1,13 @@
+/***********************************************************************************************************
+ * project specific styles
+ ***********************************************************************************************************/
+
+body {
+  font-size: 12px;
+  line-height: 18px;
+  color: #333333;
+}
+
+ /* header stuff */
+.user-info.pull-right { color: #ffffff; margin-top: 7px; padding-left: 20px; }
+.user-info a, .user-info span { color: #ffffff; margin-right: 5px; margin-left: 5px; }

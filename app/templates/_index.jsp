@@ -1,8 +1,64 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Spring Generator</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<title><%= siteTitle %></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="resources/components/bootstrap/docs/assets/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="resources/styles/project.css"/>
+	<link rel="stylesheet" type="text/css" href="resources/components/bootstrap/docs/assets/css/bootstrap-responsive.css"/>
+	<link rel="stylesheet" type="text/css" href="resources/styles/bootstrap-override.css"/>
+	
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
-	<p>Hello World!</p>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="/">
+					<div><%= _.unescape('${siteTitle}') %></div>
+					<em class="sub-brand">A University of California EH&amp;S System</em>
+				</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="home"><a href="/">Home</a></li>
+					</ul>
+					<div class="nav pull-right user-info">
+						<a href="https://ermspqa.ucop.edu/<%= _.slugify(abbreviation) %>-<%= extras.type %>" class="login login-btn">Log in</a>   
+						|<a href='spoof' class="login login-btn">Spoof</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid full-height" >
+		<div class="row-fluid">
+			<h3>Index - Development</h3>
+		</div>
+	</div>
+	
+	<script src="resources/components/angular/angular.js"></script>
+	<script src="resources/components/angular-resource/angular-resource.js"></script>
+	
+	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXXXXX-X', 'ucop.edu');
+      ga('send', 'pageview');
+
+    </script>
 </body>
 </html>
