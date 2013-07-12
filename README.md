@@ -8,6 +8,8 @@ A generator for Yeoman.
     `npm install -g yo`
 - Install the generator: `npm install -g generator-spring`
 - Run: `yo spring`
+- Run tomcat: `mvn tomcat7:run -Dspring.profiles.active=local`
+- View from: `http://localhost/{{abbreviation}}`
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
