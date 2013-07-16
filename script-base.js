@@ -8,6 +8,8 @@ module.exports = Generator;
 
 function Generator() {
 	yeoman.generators.NamedBase.apply(this, arguments);
+	// this.resourcePath = 'src/main/webapp/resources/';
+	// this.testPath = 'src/main/webapp/karma/';
 
 	try {
 		this.appname = require(path.join(process.cwd(), 'bower.json')).name;
@@ -17,6 +19,14 @@ function Generator() {
 }
 
 util.inherits(Generator, yeoman.generators.NamedBase);
+
+Generator.prototype.resourcePath = function () {
+	return 'src/main/webapp/resources/';
+};
+
+Generator.prototype.testPath = function () {
+	return 'src/main/webapp/karma/';
+};
 
 Generator.prototype.addScriptToIndex = function (script) {
 	try {

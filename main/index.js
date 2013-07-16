@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 var util = require('util');
 var ScriptBase = require('../script-base.js');
 
@@ -11,7 +12,6 @@ function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.createAppFile = function createAppFile() {
-	var resoucePath = 'src/main/webapp/resources/';
-	this.template('_app.js', resoucePath + 'scripts/app.js');
-	this.template('../../view/templates/_main.html', resoucePath + 'views/main.html');
+	this.template('_app.js', path.join(this.resourcePath(), 'scripts/app.js'));
+	this.template('../../view/templates/_main.html', path.join(this.resourcePath(), 'views/main.html'));
 };

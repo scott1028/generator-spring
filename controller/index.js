@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 var util = require('util');
 var ScriptBase = require('../script-base.js');
 
@@ -17,9 +18,7 @@ function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.createControllerFiles = function createControllerFiles() {
-	var resourcePath = 'src/main/webapp/resources/scripts/controllers/';
-	var specPath = 'src/main/webapp/karma/spec/controllers/';
-	this.template('_controller.js', resourcePath + this.name + '.js');
-	this.template('_spec.js', specPath + this.name + '.js');
+	this.template('_controller.js', path.join(this.resourcePath(), 'scripts/controllers/', this.name + '.js'));
+	this.template('_spec.js', path.join(this.testPath(), 'spec/controllers/', this.name + '.js'));
 	this.addScriptToIndex('resources/scripts/controllers/' + this.name);
 };
