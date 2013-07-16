@@ -15,7 +15,7 @@
 	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body ng-app="<%= _.camelize(appname) %>App">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -41,24 +41,21 @@
 		</div>
 	</div>
 	
-	<div class="container-fluid full-height" >
-		<div class="row-fluid">
-			<h3>Index - Development</h3>
-		</div>
-	</div>
+	<div class="container-fluid" ng-view=""></div>
 	
 	<script src="resources/components/angular/angular.js"></script>
 	<script src="resources/components/angular-resource/angular-resource.js"></script>
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="resources/scripts/app.js"></script>
+	<script src="resources/scripts/controllers/main.js"></script>
+	<!-- endbuild -->
 	
 	<script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-XXXXXXXX-X', 'ucop.edu');
-      ga('send', 'pageview');
-
-    </script>
+	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	g.src='//www.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
 </body>
 </html>

@@ -7,6 +7,10 @@ var _ = require('underscore');
 var SpringGenerator = module.exports = function SpringGenerator(args, options, config) {
 	yeoman.generators.Base.apply(this, arguments);
 
+	args = ['main'];
+	this.hookFor('spring:main', {args: args});
+	this.hookFor('spring:controller', {args: args});
+
 	this.on('end', function () {
 		this.installDependencies({ skipInstall: options['skip-install'] });
 	});
@@ -79,6 +83,20 @@ SpringGenerator.prototype.properties = function properties() {
 		this.dbUser = props.dbUser;
 		this.dbPassword = props.dbPassword;
 		this.siteTitle = props.siteTitle;
+		cb();
+	}.bind(this));
+};
+
+SpringGenerator.prototype.frontEnd = function frontEnd() {
+	var cb = this.async();
+	var prompts = [{
+		name: 'appname',
+		message: 'Angular app name?',
+		default: 'safetyInspection'
+	}];
+
+	this.prompt(prompts, function (props) {
+		this.appname = props.appname;
 		cb();
 	}.bind(this));
 };
