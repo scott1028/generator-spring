@@ -227,4 +227,6 @@ SpringGenerator.prototype.other = function other() {
 	this.copy('_package.json', 'package.json');
 	this.copy('_bower.json', 'bower.json');
 	this.copy('_bowerrc', '.bowerrc');
+	this.copy('_gruntfile.js', 'Gruntfile.js');
+	this.copy('_scenarios.js', 'src/main/webapp/karma/e2e/scenarios.js');
 };

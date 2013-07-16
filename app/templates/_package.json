@@ -1,5 +1,9 @@
 {
-  "name": "<%= appname %>",
-  "version": "0.0.0",
-  "dependencies": {}
+	"name": "<%= appname %>",
+	"version": "0.0.0",
+	"dependencies": {
+		"grunt": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-karma": "latest"
+	}
 }
