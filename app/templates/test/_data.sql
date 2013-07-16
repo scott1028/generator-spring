@@ -1,0 +1,3 @@
+INSERT INTO <%= extras.schema %>.Person(FirstName, LastName, Email, NetId, Eppn, IdpInfo, CreatedBy, LastModifiedBy, CreatedDate, LastModifiedDate) VALUES ('SYSTEM', 'SYSTEM', 'no-reply@ucdavis.edu', 'SYSTEM', 'SYSTEM', '03', 1, 1, '2013-04-23', '2013-04-23');
+INSERT INTO <%= extras.schema %>.Person(FirstName, LastName, Email, NetId, Eppn, IdpInfo, CreatedBy, LastModifiedBy, CreatedDate, LastModifiedDate) VALUES ('TEST', 'TEST', 'test@ucdavis.edu', 'TEST', 'test@ucdavis.edu', '03', 1, 1, '2013-04-23', '2013-04-23');
+SET @TestPersonId = IDENTITY();

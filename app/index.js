@@ -184,6 +184,21 @@ SpringGenerator.prototype.app = function app() {
 	this.template('spring/_pom.xml', 'pom.xml');
 };
 
+SpringGenerator.prototype.testFiles = function testFiles() {
+	var coreTestPath = 'src/test/java/' + this.corePackage.toLowerCase().split('.').join('/');
+	this.extras = {
+		name: this.projectName.toLowerCase().split(' ').join(''),
+		schema: this.projectName.split(' ').join('')
+	};
+	this.template('test/_test-app-data.xml', 'src/test/resources/spring/test-app-data.xml');
+	this.template('test/BaseIntegrationTest.java', coreTestPath + '/data/BaseIntegrationTest.java');
+	this.template('test/PersonRepositoryTest.java', coreTestPath + '/data/PersonRepositoryTest.java');
+
+	this.copy('test/_schema.sql', 'src/test/resources/data/schema.sql');
+	this.copy('test/_data.sql', 'src/test/resources/data/data.sql');
+	this.copy('test/log4j.properties', 'src/test/resources/log4j.properties');
+};
+
 SpringGenerator.prototype.javaFiles = function javaFiles() {
 	var corePath = 'src/main/java/' + this.corePackage.toLowerCase().split('.').join('/');
 	this.template('classes/core/data/ControlCodeEnumUserType.java', corePath + '/data/ControlCodeEnumUserType.java');

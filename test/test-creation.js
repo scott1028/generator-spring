@@ -109,6 +109,22 @@ describe('Spring Generator', function () {
 		});
 	});
 
+	it('should create junit test files', function (done) {
+		var expected = [
+			'src/test/resources/log4j.properties',
+			'src/test/resources/data/data.sql',
+			'src/test/resources/data/schema.sql',
+			'src/test/resources/spring/test-app-data.xml',
+			['src/test/java/edu/ucdavis/its/core/data/BaseIntegrationTest.java', /package edu\.ucdavis\.its\.core\.data;/],
+			['src/test/java/edu/ucdavis/its/core/data/PersonRepositoryTest.java',  /package edu\.ucdavis\.its\.core\.data;/]
+		];
+
+		this.app.run({}, function () {
+			helpers.assertFiles(expected);
+			done();
+		});
+	});
+
 	it('should create node related files', function (done) {
 		var expected = [
 			['package.json', /"name": "safetyInspection"/],

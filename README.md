@@ -8,6 +8,7 @@ A generator for Yeoman.
 - Install the generator: `npm install -g generator-spring`
 - Run: `yo spring`
 - Run tomcat: `mvn tomcat7:run -Dspring.profiles.active=local`
+- Run tests: `mvn test`
 - View from: `http://localhost/{{abbreviation}}`
 
 ## Generators
