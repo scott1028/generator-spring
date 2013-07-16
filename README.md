@@ -1,5 +1,4 @@
-# Generator-spring
-[![Build Status](https://secure.travis-ci.org/countableSet/generator-spring.png?branch=master)](https://travis-ci.org/countableSet/generator-spring)
+# Spring/Maven + Angular Generator [![Build Status](https://secure.travis-ci.org/countableSet/generator-spring.png?branch=master)](https://travis-ci.org/countableSet/generator-spring)
 
 A generator for Yeoman.
 
