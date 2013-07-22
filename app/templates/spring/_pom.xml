@@ -49,14 +49,15 @@
             <name>lms-maven.sdsc.edu-releases</name>
             <url>http://lms-maven.sdsc.edu:8080/artifactory/ext-release-local</url>
         </repository>
-		<repository>
-			<id>project.local</id>
-			<name>project</name>
-			<url>file:<%= _.unescape('${project.basedir}') %>/lib</url>
-		</repository>
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>edu.ucdavis.its.ps</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- UCDavis ITS Core modules for Shibboleth Integration -->
 		<dependency>
 			<groupId>edu.ucdavis.its.core</groupId>

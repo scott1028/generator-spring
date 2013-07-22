@@ -1,4 +1,4 @@
-package <%= corePackage %>.data;
+package <%= basePackage %>.data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

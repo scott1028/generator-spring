@@ -39,23 +39,6 @@ SpringGenerator.prototype.askFor = function askFor() {
 		message: 'What is the base project package name (com.example.projectname)?',
 		default: 'edu.ucdavis.its.safetyinspection'
 	}, {
-		name: 'corePackage',
-		message: 'What is the core package name (com.example.core)?',
-		default: 'edu.ucdavis.its.core'
-	}];
-
-	this.prompt(prompts, function (props) {
-		this.projectName = props.projectName;
-		this.abbreviation = props.abbreviation;
-		this.basePackage = props.basePackage;
-		this.corePackage = props.corePackage;
-		cb();
-	}.bind(this));
-};
-
-SpringGenerator.prototype.properties = function properties() {
-	var cb = this.async();
-	var prompts = [{
 		name: 'dbUrl',
 		message: 'Database: What is the database url?',
 		default: '192.168.56.111'
@@ -75,30 +58,35 @@ SpringGenerator.prototype.properties = function properties() {
 		name: 'siteTitle',
 		message: 'What is the project site title?',
 		default: 'Safety Inspection Tool'
-	}];
-
-	this.prompt(prompts, function (props) {
-		this.dbUrl = props.dbUrl;
-		this.dbName = props.dbName;
-		this.dbUser = props.dbUser;
-		this.dbPassword = props.dbPassword;
-		this.siteTitle = props.siteTitle;
-		cb();
-	}.bind(this));
-};
-
-SpringGenerator.prototype.frontEnd = function frontEnd() {
-	var cb = this.async();
-	var prompts = [{
+	}, {
 		name: 'appname',
 		message: 'Angular app name?',
 		default: 'safetyInspection'
 	}];
 
 	this.prompt(prompts, function (props) {
+		this.projectName = props.projectName;
+		this.abbreviation = props.abbreviation;
+		this.basePackage = props.basePackage;
+		this.corePackage = 'edu.ucdavis.its.ps.core';
+
+		this.dbUrl = props.dbUrl;
+		this.dbName = props.dbName;
+		this.dbUser = props.dbUser;
+		this.dbPassword = props.dbPassword;
+		this.siteTitle = props.siteTitle;
+
 		this.appname = props.appname;
 		cb();
 	}.bind(this));
+};
+
+SpringGenerator.prototype.baseFiles = function baseFile() {
+	this.extras = {
+		name: this.projectName.toLowerCase().split(' ').join(''),
+		schema: this.projectName.split(' ').join('')
+	};
+	this.directory('src', 'src', true);
 };
 
 SpringGenerator.prototype.appPackages = function appPackages() {
@@ -114,7 +102,7 @@ SpringGenerator.prototype.appPackages = function appPackages() {
 
 SpringGenerator.prototype.app = function app() {
 	var name = this.projectName.toLowerCase().split(' ').join('');
-	var path = 'src/main/resources/';
+	var basePath = 'src/main/resources/';
 
 	this.extras = {
 		name: name,
@@ -123,7 +111,7 @@ SpringGenerator.prototype.app = function app() {
 		typeLong: 'Development',
 		updateType: 'UPDATE'
 	};
-	this.copy('spring/temp.properties', path + name + '.dev.properties');
+	this.copy('spring/temp.properties', path.join(basePath, name + '.dev.properties'));
 	this.extras = {
 		name: name,
 		schema: this.projectName.split(' ').join(''),
@@ -131,49 +119,22 @@ SpringGenerator.prototype.app = function app() {
 		typeLong: 'Stage',
 		updateType: ''
 	};
-	this.copy('spring/temp.properties', path + name + '.stage.properties');
+	this.copy('spring/temp.properties', path.join(basePath, name + '.stage.properties'));
 	this.extras = {
 		name: name,
 		schema: this.projectName.split(' ').join('')
 	};
-	this.copy('spring/prod.properties', path + name + '.prod.properties');
-
-	this.copy('spring/log4j.properties', path + 'log4j.properties');
-	this.copy('spring/ehsCache.xml', path + 'ehsCache.xml');
-	this.copy('spring/orm.xml', path + 'META-INF/orm.xml');
-	this.copy('spring/persistence.xml', path + 'META-INF/persistence.xml');
-	this.template('spring/_app-data.xml', path + 'spring/app-data.xml');
-	this.template('spring/_app-security.xml', path + 'spring/app-security.xml');
-	this.template('spring/_app-service.xml', path + 'spring/app-service.xml');
-	this.template('spring/_app-web.xml', path + 'spring/app-web.xml');
-	this.template('spring/_web.xml', 'src/main/webapp/WEB-INF/web.xml');
-
-	this.template('_index.jsp', 'src/main/webapp/WEB-INF/views/index.jsp');
-	this.template('style/_bootstrap-override.css', 'src/main/webapp/resources/styles/bootstrap-override.css');
-	this.template('style/_project.css', 'src/main/webapp/resources/styles/project.css');
+	this.copy('spring/prod.properties', path.join(basePath, name + '.prod.properties'));
 	this.template('spring/_pom.xml', 'pom.xml');
 };
 
 SpringGenerator.prototype.testFiles = function testFiles() {
-	var coreTestPath = path.join('src/test/java/', this.corePackage.toLowerCase().split('.').join('/'));
-	this.extras = {
-		name: this.projectName.toLowerCase().split(' ').join(''),
-		schema: this.projectName.split(' ').join('')
-	};
-	this.template('test/_test-app-data.xml', 'src/test/resources/spring/test-app-data.xml');
-	this.template('test/BaseIntegrationTest.java', coreTestPath + '/data/BaseIntegrationTest.java');
-	this.template('test/PersonRepositoryTest.java', coreTestPath + '/data/PersonRepositoryTest.java');
-
-	this.copy('test/_schema.sql', 'src/test/resources/data/schema.sql');
-	this.copy('test/_data.sql', 'src/test/resources/data/data.sql');
-	this.copy('test/log4j.properties', 'src/test/resources/log4j.properties');
+	var mainTestPath = path.join('src/test/java/', this.basePackage.toLowerCase().split('.').join('/'));
+	this.directory('classes/test/', path.join(mainTestPath));
 };
 
 SpringGenerator.prototype.javaFiles = function javaFiles() {
-	var corePath = path.join('src/main/java/', this.corePackage.toLowerCase().split('.').join('/'));
 	var mainPath = path.join('src/main/java/', this.basePackage.toLowerCase().split('.').join('/'));
-
-	this.directory('classes/core', corePath, true);
 	this.directory('classes/main', mainPath, true);
 };
 
@@ -182,5 +143,4 @@ SpringGenerator.prototype.other = function other() {
 	this.copy('_bower.json', 'bower.json');
 	this.copy('_bowerrc', '.bowerrc');
 	this.copy('_gruntfile.js', 'Gruntfile.js');
-	this.copy('_scenarios.js', 'src/main/webapp/karma/e2e/scenarios.js');
 };

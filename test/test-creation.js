@@ -47,34 +47,6 @@ describe('Spring Generator', function () {
 
 	it('should create expected package files', function (done) {
 		var expected = [
-		// core
-			['src/main/java/edu/ucdavis/its/core/data/ControlCodeEnumUserType.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/CustomJpaRepository.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/CustomJpaRepositoryFactoryBean.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/CustomJpaRepositoryImpl.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/CustomNamingStrategy.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/CustomSQLServer2008Dialect.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/IdpInfoEnumUserType.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/package-info.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/PermissionDeniedException.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/PersonRepository.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/data/RecordNotFoundException.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/main/java/edu/ucdavis/its/core/domain/AuditableEntity.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/BaseEntity.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/BaseObject.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/ControlCode.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/ControlCodeConverterFactory.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/EnumWithDescription.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/Person.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/domain/StringToEnumConverter.java', /package edu\.ucdavis\.its\.core\.domain;/],
-			['src/main/java/edu/ucdavis/its/core/security/SpringSecurityAuditorAware.java', /package edu\.ucdavis\.its\.core\.security;/],
-			['src/main/java/edu/ucdavis/its/core/service/BaseService.java', /package edu\.ucdavis\.its\.core\.service;/],
-			['src/main/java/edu/ucdavis/its/core/service/BaseServiceImpl.java', /package edu\.ucdavis\.its\.core\.service;/],
-			['src/main/java/edu/ucdavis/its/core/service/PersonService.java', /package edu\.ucdavis\.its\.core\.service;/],
-			['src/main/java/edu/ucdavis/its/core/service/PersonServiceImpl.java', /package edu\.ucdavis\.its\.core\.service;/],
-			['src/main/java/edu/ucdavis/its/core/service/UserDetailsService.java', /package edu\.ucdavis\.its\.core\.service;/],
-			['src/main/java/edu/ucdavis/its/core/testing/MockAuditorAware.java', /package edu\.ucdavis\.its\.core\.testing;/],
-		// base
 			['src/main/java/edu/ucdavis/its/safetyinspection/web/HomeController.java', /package edu\.ucdavis\.its\.safetyinspection\.web;/],
 			['src/main/java/edu/ucdavis/its/safetyinspection/web/helper/RestError.java', /package edu\.ucdavis\.its\.safetyinspection\.web.helper;/],
 			['src/main/java/edu/ucdavis/its/safetyinspection/web/helper/RestExceptionHandler.java', /package edu\.ucdavis\.its\.safetyinspection\.web.helper;/]
@@ -115,8 +87,7 @@ describe('Spring Generator', function () {
 			'src/test/resources/data/data.sql',
 			'src/test/resources/data/schema.sql',
 			'src/test/resources/spring/test-app-data.xml',
-			['src/test/java/edu/ucdavis/its/core/data/BaseIntegrationTest.java', /package edu\.ucdavis\.its\.core\.data;/],
-			['src/test/java/edu/ucdavis/its/core/data/PersonRepositoryTest.java',  /package edu\.ucdavis\.its\.core\.data;/]
+			['src/test/java/edu/ucdavis/its/safetyinspection/data/BaseIntegrationTest.java', /package edu\.ucdavis\.its\.safetyinspection\.data;/]
 		];
 
 		this.app.run({}, function () {
