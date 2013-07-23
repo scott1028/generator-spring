@@ -10,7 +10,7 @@
 	<properties>
 		<java-version>1.6</java-version>
 		<pscore.version>0.0.2-SNAPSHOT</pscore.version>
-		<authpack.version>1.0.8-SNAPSHOT</authpack.version>
+		<authpack.version>1.0.8-no-ehcache</authpack.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
 		<springsecurity.version>3.1.3.RELEASE</springsecurity.version>
 		<hibernate.version>4.2.0.Final</hibernate.version>
@@ -58,38 +58,6 @@
 			<artifactId>ps-core</artifactId>
 			<version><%= _.unescape('${pscore.version}') %></version>
 		</dependency>
-
-		<!-- UCDavis ITS Core modules for Shibboleth Integration -->
-		<dependency>
-			<groupId>edu.ucdavis.its.core</groupId>
-			<artifactId>authentication-pack</artifactId>
-			<version><%= _.unescape('${authpack.version}') %></version>
-
-			<exclusions>
-				<exclusion>
-					<groupId>net.sf.ehcache</groupId>
-					<artifactId>ehcache</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.googlecode.ehcache-spring-annotations</groupId>
-					<artifactId>ehcache-spring-annotations</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>net.sf.ehcache</groupId>
-					<artifactId>ehcache-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<artifactId>joda-time</artifactId>
-					<groupId>joda-time</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-        <dependency>
-            <groupId>edu.ucop.erms.its.sushi</groupId>
-            <artifactId>SushiClient</artifactId>
-            <version>0.2.0</version>
-        </dependency>
 
 		<!-- Spring -->
 		<dependency>
@@ -236,13 +204,6 @@
 			<version><%= _.unescape('${log4j.version}') %></version>
 		</dependency>
 
-		<!-- @Inject -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -265,21 +226,9 @@
 		
 		<!--JSON library -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.1.2</version>
-		</dependency>
-		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-joda</artifactId>
 			<version>2.1.1</version>
-		</dependency>  
-				
-		<!-- Common Lang -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
 		</dependency>
 
 		<!-- Joda Time -->
@@ -287,26 +236,6 @@
 			<groupId>org.jadira.usertype</groupId>
 			<artifactId>usertype.core</artifactId>
 			<version>3.1.0.CR2</version>
-		</dependency>
-
-		<!-- Google Guava -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version><%= _.unescape('${guava.version}') %></version>
-		</dependency>
-		
-		<!-- Test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version><%= _.unescape('${junit.version}') %></version>
-			<exclusions>
-				<exclusion>
-					<artifactId>hamcrest-core</artifactId>
-					<groupId>org.hamcrest</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -335,20 +264,6 @@
 		    <artifactId>json-path-assert</artifactId>
 		    <version>0.8.1</version>
 		    <scope>test</scope>
-		</dependency>
-		
-		<!-- Selenium / WebDriver -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version><%= _.unescape('${selenium.version}') %></version>
-    	</dependency>
-    	
-    	<!-- In Memeory Database for Testing -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.3.171</version>
 		</dependency>
 		
 		<!-- SQL Server -->

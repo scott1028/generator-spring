@@ -26,11 +26,6 @@
 			</list>
 		</property>
 	</bean>
-	
-	<!-- the cache manager : this thing is a FactoryBean that exposes the CacheManager interface -->
-	<bean id="tokenCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-  		<property name="configLocation" value="classpath:tokenCache.xml"/>
-	</bean>	
 
 	<bean id="stringEncrypterService" class="edu.ucdavis.its.authpack.service.impl.StringEncrypterServiceImpl" init-method="init">
 		<property name="configEncryptionKey" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptionKey}') %>" />
@@ -46,8 +41,6 @@
 		<property name="configTokenMaxAge" value="<%= _.unescape('${edu.ucdavis.its.authpack.configTokenMaxAge}') %>" />
 		<property name="configEncryptedPostData" value="<%= _.unescape('${edu.ucdavis.its.authpack.configEncryptedPostData}') %>" />
 		<property name="stringEncrypter" ref="stringEncrypterService" />
-		<property name="tokenCacheConfigurationName" value="tokenCache" />
-		<property name="cacheManager" ref="tokenCacheManager" />
 		<property name="shibHeaderValidatorService" ref="shibHeaderValidatorService" />
 	</bean>
 
