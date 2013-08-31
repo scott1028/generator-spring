@@ -2,11 +2,18 @@
 	"name": "<%= appname %>",
 	"version": "0.0.1",
 	"dependencies": {
-		"angular": "latest",
-		"angular-resource": "latest",
-		"bootstrap": "latest",
+		"angular": "1.2.0-rc.1",
+		"angular-resource": "1.2.0-rc.1",
+		"angular-route": "1.2.0-rc.1",
 		"angular-mocks": "latest",
-		"angular-scenario": "latest"
+		"bootstrap": "latest",
+		"lodash": "latest",
+		"momentjs": "latest",
+		"less.js": "latest",
+		"angular-ui-bootstrap-bower": "latest"
+	},
+	"resolutions": {
+		"angular": "1.2.0-rc.1"
 	}
 }
 

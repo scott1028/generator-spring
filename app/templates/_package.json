@@ -1,9 +1,21 @@
 {
 	"name": "<%= appname %>",
 	"version": "0.0.0",
+	"index": "<%= indexFile %>",
 	"dependencies": {
 		"grunt": "latest",
 		"grunt-contrib-watch": "latest",
-		"grunt-karma": "latest"
+		"grunt-contrib-copy": "latest",
+		"grunt-contrib-jshint": "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-contrib-less": "latest",
+		"grunt-clear": "latest",
+		"grunt-karma": "latest",
+		"grunt-shell": "latest",
+		"grunt-usemin": "latest",
+		"karma-ng-scenario": "latest"
+	},
+	"devDependencies": {
+		"karma-safari-launcher": "latest"
 	}
 }
