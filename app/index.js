@@ -29,15 +29,15 @@ SpringGenerator.prototype.askFor = function askFor() {
 	var prompts = [{
 		name: 'projectName',
 		message: 'What is the project name?',
-		default: 'Safety Inspection'
+		default: 'Demo Application'
 	}, {
 		name: 'abbreviation',
 		message: 'What is the project abbreviation?',
-		default: 'SIT'
+		default: 'DEMO'
 	}, {
 		name: 'basePackage',
 		message: 'What is the base project package name (com.example.projectname)?',
-		default: 'edu.ucdavis.its.safetyinspection'
+		default: 'com.example.angular.demo'
 	}, {
 		name: 'dbUrl',
 		message: 'Database: What is the database url?',
@@ -57,11 +57,15 @@ SpringGenerator.prototype.askFor = function askFor() {
 	}, {
 		name: 'siteTitle',
 		message: 'What is the project site title?',
-		default: 'Safety Inspection Tool'
+		default: 'Demo Application'
 	}, {
 		name: 'appname',
 		message: 'Angular app name?',
-		default: 'safetyInspection'
+		default: 'app'
+	}, {
+		name: 'indexFile',
+		message: 'The location of where ngApp is?',
+		default: 'src/main/webapp/WEB-INF/views/index.jsp'
 	}];
 
 	this.prompt(prompts, function (props) {
@@ -77,6 +81,7 @@ SpringGenerator.prototype.askFor = function askFor() {
 		this.siteTitle = props.siteTitle;
 
 		this.appname = props.appname;
+		this.indexFile = props.indexFile;
 		cb();
 	}.bind(this));
 };
@@ -143,4 +148,5 @@ SpringGenerator.prototype.other = function other() {
 	this.copy('_bower.json', 'bower.json');
 	this.copy('_bowerrc', '.bowerrc');
 	this.copy('_gruntfile.js', 'Gruntfile.js');
+	this.copy('jshintrc', '.jshintrc');
 };
