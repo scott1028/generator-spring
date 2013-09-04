@@ -92,6 +92,7 @@ SpringGenerator.prototype.baseFiles = function baseFile() {
 		schema: this.projectName.split(' ').join('')
 	};
 	this.directory('src', 'src', true);
+	this.template('_index.jsp', 'src/main/webapp/WEB-INF/views/index.jsp');
 };
 
 SpringGenerator.prototype.appPackages = function appPackages() {

@@ -1,5 +1,10 @@
 module.exports = function(grunt) {
     'use strict';
+
+    var rename = function (dest, src) { return dest + src.substring(0, src.indexOf('.min')) + '.js';};
+    var renameCSS = function (dest, src) { return dest + src.substring(0, src.indexOf('.min')) + '.css'; };
+    var renameVersion = function (dest, src) { return dest + src.substring(0, src.indexOf('-')) + '.js'; };
+    
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -48,7 +53,7 @@ module.exports = function(grunt) {
 
                     {expand: true, cwd: 'bower_components/lodash/', src: ['lodash.js'], dest: 'src/main/webapp/resources/lib/'},
                     {expand: true, cwd: 'bower_components/momentjs/', src: ['moment.js'], dest: 'src/main/webapp/resources/lib/'},
-                    {expand: true, cwd: 'bower_components/less.js/dist/', src: ['less-1.4.2.js'], dest: 'src/main/webapp/resources/lib/less.js'},
+                    {expand: true, cwd: 'bower_components/less.js/dist/', src: ['less-1.4.2.js'], dest: 'src/main/webapp/resources/lib/', rename: renameVersion},
                     {expand: true, cwd: 'bower_components/angular-ui-bootstrap-bower/', src: ['ui-bootstrap.js'], dest: 'src/main/webapp/resources/lib/'},
 
                     {expand: true, cwd: 'bower_components/bootstrap/dist/css/', src: ['bootstrap.css'], dest: 'src/main/webapp/resources/styles/'},
@@ -57,16 +62,16 @@ module.exports = function(grunt) {
             },
             release: {
                 files: [
-                    {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js'], dest: 'src/main/webapp/resources/lib/angular.js'},
-                    {expand: true, cwd: 'bower_components/angular-resource/', src: ['angular-resource.min.js'], dest: 'src/main/webapp/resources/lib/angular-resource.js'},
-                    {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.min.js'], dest: 'src/main/webapp/resources/lib/angular-route.js'},
+                    {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
+                    {expand: true, cwd: 'bower_components/angular-resource/', src: ['angular-resource.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
+                    {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
 
-                    {expand: true, cwd: 'bower_components/lodash/dist/', src: ['lodash.min.js'], dest: 'src/main/webapp/resources/lib/lodash.js'},
-                    {expand: true, cwd: 'bower_components/momentjs/min/', src: ['moment.min.js'], dest: 'src/main/webapp/resources/lib/moment.js'},
-                    {expand: true, cwd: 'bower_components/less.js/dist/', src: ['less-1.4.2.min.js'], dest: 'src/main/webapp/resources/lib/less.js'},
-                    {expand: true, cwd: 'bower_components/angular-ui-bootstrap-bower/', src: ['ui-bootstrap.min.js'], dest: 'src/main/webapp/resources/lib/ui-bootstrap.js'},
+                    {expand: true, cwd: 'bower_components/lodash/dist/', src: ['lodash.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
+                    {expand: true, cwd: 'bower_components/momentjs/min/', src: ['moment.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
+                    {expand: true, cwd: 'bower_components/less.js/dist/', src: ['less-1.4.2.min.js'], dest: 'src/main/webapp/resources/lib/', rename: renameVersion},
+                    {expand: true, cwd: 'bower_components/angular-ui-bootstrap-bower/', src: ['ui-bootstrap.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
 
-                    {expand: true, cwd: 'bower_components/bootstrap/dist/', src: ['bootstrap.min.css'], dest: 'src/main/webapp/resources/styles/bootstrap.css'},
+                    {expand: true, cwd: 'bower_components/bootstrap/dist/', src: ['bootstrap.min.css'], dest: 'src/main/webapp/resources/styles/', rename: renameCSS},
                     {expand: true, cwd: 'bower_components/bootstrap/dist/fonts/', src: ['glyphicons*'], dest: 'src/main/webapp/resources/fonts/'}
                 ]
             }
