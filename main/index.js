@@ -16,5 +16,4 @@ Generator.prototype.createAppFile = function createAppFile() {
 	this.template('../../view/templates/_main.html', path.join(this.resourcePath(), 'views/main.html'));
 
 	this.template('_karma.conf.js', path.join(this.testPath(), 'karma.conf.js'));
-	this.template('_karma-e2e.conf.js', path.join(this.testPath(), 'karma-e2e.conf.js'));
 };

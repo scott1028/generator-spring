@@ -100,8 +100,7 @@ describe('Spring Generator', function () {
 		var expected = [
 			['package.json', /"name": "safetyInspection"/],
 			['bower.json', /"name": "safetyInspection"/],
-			'Gruntfile.js',
-			['src/main/webapp/karma/e2e/scenarios.js', /navigateTo\('\/sit\/'\)/]
+			'Gruntfile.js'
 		];
 
 		this.app.run({}, function () {
@@ -168,8 +167,7 @@ describe('Spring Generator', function () {
 			var expected = [
 				['src/main/webapp/resources/scripts/app.js', /module\('safetyInspectionApp'/],
 				'src/main/webapp/resources/views/main.html',
-				'src/main/webapp/karma/karma.conf.js',
-				'src/main/webapp/karma/karma-e2e.conf.js'
+				'src/main/webapp/karma/karma.conf.js'
 			];
 			this.app.run({}, function () {
 				main.run({}, function () {
