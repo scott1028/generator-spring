@@ -50,7 +50,6 @@
     <!-- build:js resources/scripts/build.js -->
     <script src="http://localhost:35729/livereload.js"></script>
     <script src="resources/scripts/app.js"></script>
-    <script src="resources/scripts/controllers/main.js"></script>
     <!-- endbuild -->
 
     <script>

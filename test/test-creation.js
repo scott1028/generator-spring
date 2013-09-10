@@ -114,8 +114,44 @@ describe('Spring Generator', function () {
 			var deps = ['../../controller'];
 			var controller = helpers.createGenerator('spring:controller', deps, ['foo']);
 			var expected = [
-				['src/main/webapp/resources/scripts/controllers/foo.js', /controller\('FooCtrl'/],
-				['src/main/webapp/karma/spec/controllers/foo.js', /describe\('Controller: FooCtrl'/]
+				['src/main/webapp/resources/scripts/controllers/foo/foo.js', /controller\('FooCtrl'/],
+				'src/main/webapp/resources/scripts/controllers/foo/foo.html',
+				['src/main/webapp/karma/spec/controllers/foo/foo.js', /describe\('Controller: FooCtrl'/],
+				['src/main/webapp/WEB-INF/views/index.jsp', /script src\="resources\/scripts\/controllers\/foo\/foo.js"/]
+			];
+			this.app.run({}, function () {
+				controller.run({}, function () {
+					helpers.assertFiles(expected);
+					done();
+				});
+			});
+		});
+
+		it('should generate a new controller with correct structure', function (done) {
+			var deps = ['../../controller'];
+			var controller = helpers.createGenerator('spring:controller', deps, ['foo/bar']);
+			var expected = [
+				['src/main/webapp/resources/scripts/controllers/foo/bar/bar.js', /controller\('FooBarCtrl'/],
+				'src/main/webapp/resources/scripts/controllers/foo/bar/bar.html',
+				['src/main/webapp/karma/spec/controllers/foo/bar/bar.js', /describe\('Controller: FooBarCtrl'/],
+				['src/main/webapp/WEB-INF/views/index.jsp', /script src\="resources\/scripts\/controllers\/foo\/bar\/bar.js"/]
+			];
+			this.app.run({}, function () {
+				controller.run({}, function () {
+					helpers.assertFiles(expected);
+					done();
+				});
+			});
+		});
+
+		it('should generate a new controller without leading and trailing slashes', function (done) {
+			var deps = ['../../controller'];
+			var controller = helpers.createGenerator('spring:controller', deps, ['/foo/bar/']);
+			var expected = [
+				['src/main/webapp/resources/scripts/controllers/foo/bar/bar.js', /controller\('FooBarCtrl'/],
+				'src/main/webapp/resources/scripts/controllers/foo/bar/bar.html',
+				['src/main/webapp/karma/spec/controllers/foo/bar/bar.js', /describe\('Controller: FooBarCtrl'/],
+				['src/main/webapp/WEB-INF/views/index.jsp', /script src\="resources\/scripts\/controllers\/foo\/bar\/bar.js"/]
 			];
 			this.app.run({}, function () {
 				controller.run({}, function () {
