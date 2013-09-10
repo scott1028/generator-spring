@@ -19,24 +19,13 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 }
-            },
-            e2e: {
-                files: [
-                    'src/main/webapp/karma/e2e/**/*.js',
-                    'src/main/webapp/resources/**/*.js'
-                ],
-                tasks: ['clear', 'jshint:e2e', 'karma:e2e:run']
             }
         },
         karma: {
             unit: {
                 configFile: 'src/main/webapp/karma/karma.conf.js',
                 background: true
-            },
-            e2e: {
-                configFile: 'src/main/webapp/karma/karma-e2e.conf.js',
-                background: true
-            },
+            }
             release: {
                 configFile: 'src/main/webapp/karma/karma.conf.js',
                 singleRun: true,
@@ -91,9 +80,6 @@ module.exports = function(grunt) {
                 'Gruntfile.js',
                 'src/main/webapp/resources/scripts/{,*/}*.js',
                 'src/main/webapp/karma/spec/{,*/}*.js'
-            ],
-            e2e: [
-                'src/main/webapp/karma/e2e/{,*/}*.js'
             ]
         },
         less: {
@@ -127,8 +113,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['package']);
     grunt.registerTask('package', ['shell:bower', 'copy:dev']);
 
-    grunt.registerTask('test', ['jshint', 'karma:unit', 'karma:e2e']);
-    grunt.registerTask('test:e2e', ['clear', 'jshint:e2e', 'karma:e2e', 'watch:e2e']);
+    grunt.registerTask('test', ['jshint', 'karma:unit']);
     grunt.registerTask('test:unit', ['clear', 'jshint:all', 'karma:unit', 'watch:js']);
 
     grunt.registerTask('build:release', ['jshint', 'karma:release', 'copy:release', 'concat', 'less', 'usemin']);
