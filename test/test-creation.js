@@ -179,23 +179,6 @@ describe('Spring Generator', function () {
 		});
 	});
 
-	describe('Factory', function () {
-		it('should generate a new factory', function (done) {
-			var deps = ['../../factory'];
-			var factory = helpers.createGenerator('spring:factory', deps, ['foo']);
-			var expected = [
-				['src/main/webapp/resources/scripts/services/foo.js', /factory\('foo'/],
-				['src/main/webapp/karma/spec/services/foo.js', /describe\('Service: foo'/]
-			];
-			this.app.run({}, function () {
-				factory.run({}, function () {
-					helpers.assertFiles(expected);
-					done();
-				});
-			});
-		});
-	});
-
 	describe('Main', function () {
 		it('should generate app.js and main files', function (done) {
 			var deps = ['../../main'];
@@ -219,8 +202,8 @@ describe('Spring Generator', function () {
 			var deps = ['../../service'];
 			var service = helpers.createGenerator('spring:service', deps, ['foo']);
 			var expected = [
-				['src/main/webapp/resources/scripts/services/foo.js', /service\('foo'/],
-				['src/main/webapp/karma/spec/services/foo.js', /describe\('Service: foo'/]
+				['src/main/webapp/resources/scripts/services/foo.js', /factory\('FooService'/],
+				['src/main/webapp/karma/spec/services/foo.js', /describe\('Service: FooService'/]
 			];
 			this.app.run({}, function () {
 				service.run({}, function () {
