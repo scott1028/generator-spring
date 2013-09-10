@@ -2,7 +2,6 @@ module.exports = function(grunt) {
     'use strict';
 
     var rename = function (dest, src) { return dest + src.substring(0, src.indexOf('.min')) + '.js';};
-    var renameCSS = function (dest, src) { return dest + src.substring(0, src.indexOf('.min')) + '.css'; };
     var renameVersion = function (dest, src) { return dest + src.substring(0, src.indexOf('-')) + '.js'; };
     
     grunt.initConfig({
@@ -56,7 +55,7 @@ module.exports = function(grunt) {
                     {expand: true, cwd: 'bower_components/less.js/dist/', src: ['less-1.4.2.js'], dest: 'src/main/webapp/resources/lib/', rename: renameVersion},
                     {expand: true, cwd: 'bower_components/angular-ui-bootstrap-bower/', src: ['ui-bootstrap.js'], dest: 'src/main/webapp/resources/lib/'},
 
-                    {expand: true, cwd: 'bower_components/bootstrap/dist/css/', src: ['bootstrap.css'], dest: 'src/main/webapp/resources/styles/'},
+                    {expand: true, cwd: 'bower_components/bootstrap/less/', src: ['*.less'], dest: 'src/main/webapp/resources/styles/bootstrap/'},
                     {expand: true, cwd: 'bower_components/bootstrap/dist/fonts/', src: ['glyphicons*'], dest: 'src/main/webapp/resources/fonts/'}
                 ]
             },
@@ -71,7 +70,7 @@ module.exports = function(grunt) {
                     {expand: true, cwd: 'bower_components/less.js/dist/', src: ['less-1.4.2.min.js'], dest: 'src/main/webapp/resources/lib/', rename: renameVersion},
                     {expand: true, cwd: 'bower_components/angular-ui-bootstrap-bower/', src: ['ui-bootstrap.min.js'], dest: 'src/main/webapp/resources/lib/', rename: rename},
 
-                    {expand: true, cwd: 'bower_components/bootstrap/dist/', src: ['bootstrap.min.css'], dest: 'src/main/webapp/resources/styles/', rename: renameCSS},
+                    {expand: true, cwd: 'bower_components/bootstrap/less/', src: ['*.less'], dest: 'src/main/webapp/resources/styles/bootstrap/'},
                     {expand: true, cwd: 'bower_components/bootstrap/dist/fonts/', src: ['glyphicons*'], dest: 'src/main/webapp/resources/fonts/'}
                 ]
             }
@@ -100,7 +99,7 @@ module.exports = function(grunt) {
         less: {
             dist: {
                 files: {
-                    "src/main/webapp/resources/css/build.css": "src/main/webapp/resources/css/project.less"
+                    "src/main/webapp/resources/styles/build.css": "src/main/webapp/resources/styles/master.less"
                 }
             }
         },
@@ -132,5 +131,5 @@ module.exports = function(grunt) {
     grunt.registerTask('test:e2e', ['clear', 'jshint:e2e', 'karma:e2e', 'watch:e2e']);
     grunt.registerTask('test:unit', ['clear', 'jshint:all', 'karma:unit', 'watch:js']);
 
-    grunt.registerTask('build:release', ['jshint', 'karma:release', 'concat', 'less', 'usemin']);
+    grunt.registerTask('build:release', ['jshint', 'karma:release', 'copy:release', 'concat', 'less', 'usemin']);
 };
