@@ -5,9 +5,7 @@ describe('Directive: <%= _.camelize(name) %>', function () {
 
 	var element;
 
-	it('should make hidden element visible', inject(function ($rootScope, $compile) {
-		element = angular.element('<<%= _.dasherize(name) %>></<%= _.dasherize(name) %>>');
-		element = $compile(element)($rootScope);
-		expect(element.text()).toBe('this is the <%= _.camelize(name) %> directive');
+	it('should do something', inject(function ($rootScope, $compile) {
+		expect(true).toBeTruthy();
 	}));
 });
