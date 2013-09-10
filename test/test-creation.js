@@ -179,6 +179,23 @@ describe('Spring Generator', function () {
 		});
 	});
 
+	describe('Filter', function () {
+		it('should generate a new filter', function (done) {
+			var deps = ['../../filter'];
+			var filter = helpers.createGenerator('spring:filter', deps, ['foo']);
+			var expected = [
+				['src/main/webapp/resources/scripts/filters/foo.js', /filter\('foo'/],
+				['src/main/webapp/karma/spec/filters/foo.js', /describe\('Filter: foo'/]
+			];
+			this.app.run({}, function () {
+				filter.run({}, function () {
+					helpers.assertFiles(expected);
+					done();
+				});
+			});
+		});
+	});	
+
 	describe('Main', function () {
 		it('should generate app.js and main files', function (done) {
 			var deps = ['../../main'];
