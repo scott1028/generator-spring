@@ -13,7 +13,5 @@ util.inherits(Generator, ScriptBase);
 
 Generator.prototype.createAppFile = function createAppFile() {
 	this.template('_app.js', path.join(this.resourcePath(), 'scripts/app.js'));
-	this.template('../../view/templates/_main.html', path.join(this.resourcePath(), 'views/main.html'));
-
 	this.template('_karma.conf.js', path.join(this.testPath(), 'karma.conf.js'));
 };

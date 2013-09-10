@@ -202,7 +202,6 @@ describe('Spring Generator', function () {
 			var main = helpers.createGenerator('spring:main', deps, ['main']);
 			var expected = [
 				['src/main/webapp/resources/scripts/app.js', /module\('safetyInspectionApp'/],
-				'src/main/webapp/resources/views/main.html',
 				'src/main/webapp/karma/karma.conf.js'
 			];
 			this.app.run({}, function () {
@@ -224,22 +223,6 @@ describe('Spring Generator', function () {
 			];
 			this.app.run({}, function () {
 				service.run({}, function () {
-					helpers.assertFiles(expected);
-					done();
-				});
-			});
-		});
-	});
-
-	describe('View', function () {
-		it('should generate a new view', function (done) {
-			var deps = ['../../view'];
-			var view = helpers.createGenerator('spring:view', deps, ['foo']);
-			var expected = [
-				'src/main/webapp/resources/views/foo.html'
-			];
-			this.app.run({}, function () {
-				view.run({}, function () {
 					helpers.assertFiles(expected);
 					done();
 				});
