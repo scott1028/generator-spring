@@ -33,11 +33,11 @@ Generates a controller in `src/main/webapp/resources/scripts/controllers`.
 
 Examples:
 ```bash
-echo:test rachel$ yo spring:controller landing
+$ yo spring:controller landing
    create src/main/webapp/resources/scripts/controllers/landing/landing.js
    create src/main/webapp/resources/scripts/controllers/landing/landing.html
    create src/main/webapp/karma/spec/controllers/landing/landing.js
-echo:test rachel$ yo spring:controller management/workload
+$ yo spring:controller management/workload
    create src/main/webapp/resources/scripts/controllers/management/workload/workload.js
    create src/main/webapp/resources/scripts/controllers/management/workload/workload.html
    create src/main/webapp/karma/spec/controllers/management/workload/workload.js
@@ -60,7 +60,7 @@ Generates a directive in `src/main/webapp/resources/scripts/directives`.
 
 Example:
 ```bash
-echo:test rachel$ yo spring:directive menu
+$ yo spring:directive menu
    create src/main/webapp/resources/scripts/directives/menu.js
    create src/main/webapp/karma/spec/directives/menu.js
 ```
@@ -82,7 +82,7 @@ Generates a filter in `src/main/webapp/resources/scripts/filters`.
 
 Example:
 ```bash
-echo:test rachel$ yo spring:filter status
+$ yo spring:filter status
    create src/main/webapp/resources/scripts/filters/status.js
    create src/main/webapp/karma/spec/filters/status.js
 ```
@@ -102,7 +102,7 @@ Generates a factory 'service' in `src/main/webapp/resources/scripts/servies`.
 
 Example:
 ```bash
-echo:test rachel$ yo spring:service schedule
+$ yo spring:service schedule
    create src/main/webapp/resources/scripts/services/schedule.js
    create src/main/webapp/karma/spec/services/schedule.js
 ```
