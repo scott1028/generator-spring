@@ -15,10 +15,8 @@ A generator for Yeoman.
 * [spring](#spring)
 * [spring:controller](#controller)
 * [spring:directive](#directive)
-* [spring:factory](#factory)
-* [spring:route](#route)
+* [spring:filter](#filter)
 * [spring:service](#service)
-* [spring:view](#view)
 
 **Note: Generators are to be run from the root directory of your app.**
 
@@ -33,15 +31,27 @@ yo spring
 ### Controller
 Generates a controller in `src/main/webapp/resources/scripts/controllers`.
 
-Example:
+Examples:
 ```bash
-yo spring:controller user
+echo:test rachel$ yo spring:controller landing
+   create src/main/webapp/resources/scripts/controllers/landing/landing.js
+   create src/main/webapp/resources/scripts/controllers/landing/landing.html
+   create src/main/webapp/karma/spec/controllers/landing/landing.js
+echo:test rachel$ yo spring:controller management/workload
+   create src/main/webapp/resources/scripts/controllers/management/workload/workload.js
+   create src/main/webapp/resources/scripts/controllers/management/workload/workload.html
+   create src/main/webapp/karma/spec/controllers/management/workload/workload.js
 ```
 
-Produces `src/main/webapp/resources/scripts/controllers/user.js`:
 ```javascript
-angular.module('myMod').controller('UserCtrl', function ($scope) {
-  // ...
+'use strict';
+
+angular.module('demoApp').controller('ManagementWorkloadCtrl', function ($scope) {
+  $scope.awesomeThings = [
+    'HTML5 Boilerplate',
+    'AngularJS',
+    'Karma'
+  ];
 });
 ```
 
@@ -50,70 +60,60 @@ Generates a directive in `src/main/webapp/resources/scripts/directives`.
 
 Example:
 ```bash
-yo spring:directive myDirective
+echo:test rachel$ yo spring:directive menu
+   create src/main/webapp/resources/scripts/directives/menu.js
+   create src/main/webapp/karma/spec/directives/menu.js
 ```
 
-Produces `src/main/webapp/resources/scripts/directives/myDirective.js`:
 ```javascript
-angular.module('myMod').directive('myDirective', function () {
+'use strict';
+
+angular.module('demoApp').directive('menu', function () {
   return {
-    template: '<div></div>',
-    restrict: 'E',
+    restrict: 'A',
     link: function postLink(scope, element, attrs) {
-      element.text('this is the myDirective directive');
     }
   };
 });
 ```
 
-### Factory
-Generates an AngularJS factory.
+### Filter
+Generates a filter in `src/main/webapp/resources/scripts/filters`.
 
 Example:
 ```bash
-yo spring:factory myService
+echo:test rachel$ yo spring:filter status
+   create src/main/webapp/resources/scripts/filters/status.js
+   create src/main/webapp/karma/spec/filters/status.js
 ```
 
-Produces `src/main/webapp/resources/scripts/services/myService.js`:
 ```javascript
-angular.module('myMod').factory('myService', function () {
-  // ...
+'use strict';
+
+angular.module('demoApp').filter('status', function () {
+    return function (input) {
+        return input;
+    };
 });
-```
-
-### Route
-Generates a controller and view, and configures a route in `src/main/webapp/resources/scripts/app.js` connecting them.
-
-Example:
-```bash
-yo spring:route myroute
-```
-
-Produces `src/main/webapp/resources/scripts/controllers/myroute.js`:
-```javascript
-angular.module('myMod').controller('MyrouteCtrl', function ($scope) {
-  // ...
-});
-```
-
-Produces `src/main/webapp/resources/views/myroute.html`:
-```html
-<p>This is the myroute view</p>
 ```
 
 ### Service
-
-### View
-Generates an HTML view file in `src/main/webapp/resources/views`.
+Generates a factory 'service' in `src/main/webapp/resources/scripts/servies`.
 
 Example:
 ```bash
-yo spring:view user
+echo:test rachel$ yo spring:service schedule
+   create src/main/webapp/resources/scripts/services/schedule.js
+   create src/main/webapp/karma/spec/services/schedule.js
 ```
 
-Produces `src/main/webapp/resources/views/user.html`:
-```html
-<p>This is the user view</p>
+```javascript
+'use strict';
+
+angular.module('demoApp').factory('ScheduleService', function ($resource) {
+  return $resource('api/schedule/:id', {id: '@id'}, {
+  });
+});
 ```
 
 ## License
