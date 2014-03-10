@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "bower": "latest",
+    "karma": "latest",
+    "grunt": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-shell": "latest",
+    "grunt-clear": "latest",
+    "grunt-karma": "latest",
+    "karma-junit-reporter": "latest",
+    "phantomjs": "latest"
+  }
+}

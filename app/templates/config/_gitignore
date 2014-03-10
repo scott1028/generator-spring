@@ -1,0 +1,22 @@
+.DS_Store
+
+// idea
+*.iml
+*.ipr
+*.iws
+.idea
+
+.gradle
+.vagrant
+
+// build
+target
+build
+node_modules
+bower_components
+test-results.xml
+
+
+src/main/webapp/resources/styles/bootstrap
+src/main/webapp/resources/styles/fonts
+src/main/webapp/resources/lib
