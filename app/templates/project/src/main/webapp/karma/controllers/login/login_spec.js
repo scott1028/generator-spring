@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: LoginCtrl', function () {
 
   var accountInfo = {id: 1, email: 'test@example.com', firstName: 'Test', lastName: 'User'};
 
@@ -15,14 +15,22 @@ describe('Controller: MainCtrl', function () {
     mockBackend = $injector.get('$httpBackend');
     scope = rootScope.$new();
 
-    ctrl = controller('MainCtrl', {
-      $scope: scope
+    ctrl = controller('LoginCtrl', {
+      $scope: scope,
+      AuthSharedService: $injector.get('AuthSharedService')
     });
 
     mockBackend.whenGET('account').respond(accountInfo);
   }));
 
-  it('should load main controller', function () {
+  it('should load login controller', function () {
     expect(!!ctrl).toBe(true);
   });
+
+  it('should login', function () {
+    scope.input = {email: 'test@example.com', password: 'password'};
+    scope.login();
+    mockBackend.expectPOST('auth/login', scope.input).respond('');
+  });
+
 });

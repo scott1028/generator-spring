@@ -3,13 +3,27 @@
 A generator for Yeoman.
 
 ## Getting started
-- Make sure you have [yo](https://github.com/yeoman/yo) installed:
-    `npm install -g yo`
-- Install the generator: `npm install -g generator-spring`
-- Run: `yo spring`
+- Make sure to have [yeoman](https://github.com/yeoman/yo) installed: `npm install -g yo`
+- Install the generator: `npm install -g generator-spring` (Not currently available in npm)
+- Generate Project: `yo spring`
 - Run tomcat: `mvn tomcat7:run`
 - Run tests: `mvn test`
-- View from: `http://localhost/{{abbreviation}}`
+- `http://localhost:8080/app`
+
+## Karma Tests
+``` bash
+echelon:spring rachel$ grunt test
+Running "jshint:all" (jshint) task
+>> 7 files lint free.
+
+Running "karma:continuous" (karma) task
+INFO [karma]: Karma v0.10.9 server started at http://localhost:9876/
+INFO [launcher]: Starting browser PhantomJS
+INFO [PhantomJS 1.9.7 (Mac OS X)]: Connected on socket AwPksUPr2Zkn910XgkRH
+PhantomJS 1.9.7 (Mac OS X): Executed 10 of 10 SUCCESS (0.168 secs / 0.039 secs)
+
+Done, without errors.
+```
 
 ## Generators
 * [spring](#spring)
