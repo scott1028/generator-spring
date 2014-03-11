@@ -10,6 +10,34 @@ A generator for Yeoman.
 - Run tests: `mvn test`
 - `http://localhost:8080/app`
 
+## JUnit Tests
+``` bash
+echelon:spring rachel$ mvn test
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building spring test 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running ch.example.demo.test.repository.AccountRepositoryTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.09 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.820s
+[INFO] Finished at: Mon Mar 10 22:14:00 PDT 2014
+[INFO] Final Memory: 24M/226M
+[INFO] ------------------------------------------------------------------------
+```
+
 ## Karma Tests
 ``` bash
 echelon:spring rachel$ grunt test
