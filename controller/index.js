@@ -3,8 +3,6 @@ var path = require('path');
 var util = require('util');
 var ScriptBase = require('../script-base.js');
 
-module.exports = Generator;
-
 function Generator() {
   ScriptBase.apply(this, arguments);
 
@@ -30,6 +28,8 @@ function Generator() {
     this.path = this.path + '/' + this.path;
   }
 }
+
+module.exports = Generator;
 
 util.inherits(Generator, ScriptBase);
 

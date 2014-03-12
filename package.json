@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "yeoman-generator": "latest",
-    "underscore": "latest",
-    "bower": "latest"
+    "underscore": "latest"
   },
   "devDependencies": {
     "mocha": "~1.10.0"

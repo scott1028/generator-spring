@@ -3,11 +3,11 @@ var path = require('path');
 var util = require('util');
 var ScriptBase = require('../script-base.js');
 
-module.exports = Generator;
-
 function Generator() {
   ScriptBase.apply(this, arguments);
 }
+
+module.exports = Generator;
 
 util.inherits(Generator, ScriptBase);
 
