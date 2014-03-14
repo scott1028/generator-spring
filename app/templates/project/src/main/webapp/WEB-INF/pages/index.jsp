@@ -29,7 +29,6 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#/add">Add</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-show="account.$resolved">
                     <li ng-show="account.email"><a href>{{account.email}}</a></li>

@@ -18,10 +18,10 @@ import java.util.List;
 
 @EnableWebMvc
 @ComponentScan("<%= basePackage %>.controller")
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:app.<%= _.unescape('${spring.profiles.active}') %>.properties")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
-    @Override  
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
