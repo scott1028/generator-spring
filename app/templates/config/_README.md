@@ -1,4 +1,4 @@
-Application README
-===================
+<%= projectName %> README
+=========================
 
 
