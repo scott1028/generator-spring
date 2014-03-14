@@ -28,7 +28,7 @@ Generator.prototype.testPath = function () {
 
 Generator.prototype.addScriptToIndex = function (script) {
   try {
-    var fullPath = 'src/main/webapp/WEB-INF/views/index.jsp';
+    var fullPath = 'src/main/webapp/WEB-INF/pages/index.jsp';
     angularUtils.rewriteFile({
       file: fullPath,
       needle: '<!-- endbuild -->',
