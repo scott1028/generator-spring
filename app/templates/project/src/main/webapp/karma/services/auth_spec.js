@@ -13,7 +13,7 @@ describe('Service: AuthSharedService', function () {
     AuthService = $injector.get('authService');
     mockBackend = $injector.get('$httpBackend');
     rootScope = $injector.get('$rootScope');
-    spyOn(rootScope, '$broadcast').andCallThrough();
+    spyOn(rootScope, '$broadcast').and.callThrough();
     spyOn(AuthService, 'loginConfirmed');
     spyOn(AuthService, 'loginCancelled');
 
