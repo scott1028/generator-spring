@@ -1,4 +1,6 @@
-# Spring/Maven + Angular Generator [![Build Status](https://secure.travis-ci.org/countableSet/generator-spring.png?branch=master)](https://travis-ci.org/countableSet/generator-spring)
+# Spring/Maven + Angular Generator
+
+[![Build Status](https://secure.travis-ci.org/countableSet/generator-spring.png?branch=master)](https://travis-ci.org/countableSet/generator-spring) [![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table)
 
 A generator for Yeoman.
 
@@ -14,7 +16,7 @@ A generator for Yeoman.
 ``` bash
 echelon:spring rachel$ mvn test
 [INFO] Scanning for projects...
-[INFO]                                                                         
+[INFO]
 [INFO] ------------------------------------------------------------------------
 [INFO] Building spring test 0.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
