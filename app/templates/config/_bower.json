@@ -2,14 +2,14 @@
   "name": "app",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "latest",
-    "angular-route": "latest",
-    "angular-resource": "latest",
-    "angular-mocks": "latest",
-    "bootstrap": "latest",
-    "lodash": "latest",
-    "momentjs": "latest",
-    "less.js": "latest",
-    "angular-ui-bootstrap-bower": "latest"
+    "angular": "1.2.14",
+    "angular-route": "1.2.14",
+    "angular-resource": "1.2.14",
+    "angular-mocks": "1.2.14",
+    "bootstrap": "3.1.1",
+    "lodash": "2.4.1",
+    "momentjs": "2.5.1",
+    "less.js": "1.7.0",
+    "angular-ui-bootstrap-bower": "0.10.0"
   }
 }
