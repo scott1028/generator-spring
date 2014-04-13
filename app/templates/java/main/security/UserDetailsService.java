@@ -1,11 +1,13 @@
 package <%= basePackage %>.security;
 
 import <%= basePackage %>.model.Account;
+import <%= basePackage %>.model.Authority;
 import <%= basePackage %>.repository.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,10 @@ public class UserDetailsService implements org.springframework.security.core.use
         }
 
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        for (Authority authority : accountFromDatabase.getAuthorities()) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.toString());
+            grantedAuthorities.add(grantedAuthority);
+        }
 
         return new UserDetailsCustom(lowercaseLogin, accountFromDatabase.getPassword(), grantedAuthorities, accountFromDatabase);
     }

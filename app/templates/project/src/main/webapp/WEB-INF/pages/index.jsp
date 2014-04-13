@@ -30,11 +30,11 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" ng-show="account.$resolved">
-                    <li ng-show="account.email"><a href>{{account.email}}</a></li>
-                    <li ng-show="account.email"><a href ng-click="logout()">Logout</a></li>
-                    <li ng-hide="account.email"><a href="#/login">Login</a></li>
-                    <li ng-hide="account.email"><a href="#/register">Register</a></li>
+                <ul class="nav navbar-nav navbar-right" ng-cloak>
+                    <li ng-show="authenticated"><a href>{{account.email}}</a></li>
+                    <li ng-show="authenticated"><a href ng-click="logout()">Logout</a></li>
+                    <li ng-hide="authenticated"><a href="#/login">Login</a></li>
+                    <li ng-hide="authenticated"><a href="#/register">Register</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

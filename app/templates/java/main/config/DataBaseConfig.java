@@ -67,6 +67,7 @@ public class DataBaseConfig {
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
         properties.put(PROPERTY_NAME_HIBERNATE_UPDATE, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_UPDATE));
         properties.put(PROPERTY_NAME_HIBERNATE_IMPORT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_IMPORT));
+        properties.put("hibernate.hbm2ddl.import_files_sql_extractor", "org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor");
         properties.put(PROPERTY_NAME_JODA, env.getRequiredProperty(PROPERTY_NAME_JODA));
         return properties;
     }
