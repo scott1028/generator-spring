@@ -37,6 +37,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'bower_components/angular/', src: ['angular.js'], dest: basePath + 'resources/lib/'},
           {expand: true, cwd: 'bower_components/angular-resource/', src: ['angular-resource.js'], dest: basePath + 'resources/lib/'},
           {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.js'], dest: basePath + 'resources/lib/'},
+          {expand: true, cwd: 'bower_components/angular-cookies/', src: ['angular-cookies.js'], dest: basePath + 'resources/lib/'},
 
           {expand: true, cwd: 'bower_components/lodash/dist/', src: ['lodash.js'], dest: basePath + 'resources/lib/'},
           {expand: true, cwd: 'bower_components/momentjs/', src: ['moment.js'], dest: basePath + 'resources/lib/'},
@@ -52,6 +53,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js'], dest: basePath + 'resources/lib/', rename: rename},
           {expand: true, cwd: 'bower_components/angular-resource/', src: ['angular-resource.min.js'], dest: basePath + 'resources/lib/', rename: rename},
           {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.min.js'], dest: basePath + 'resources/lib/', rename: rename},
+          {expand: true, cwd: 'bower_components/angular-cookies/', src: ['angular-cookies.min.js'], dest: basePath + 'resources/lib/', rename: rename},
 
           {expand: true, cwd: 'bower_components/lodash/dist/', src: ['lodash.min.js'], dest: basePath + 'resources/lib/', rename: rename},
           {expand: true, cwd: 'bower_components/momentjs/min/', src: ['moment.min.js'], dest: basePath + 'resources/lib/', rename: rename},

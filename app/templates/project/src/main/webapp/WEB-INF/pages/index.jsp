@@ -44,6 +44,7 @@
     <script src="resources/lib/angular.js"></script>
     <script src="resources/lib/angular-resource.js"></script>
     <script src="resources/lib/angular-route.js"></script>
+    <script src="resources/lib/angular-cookies.js"></script>
     <script src="resources/lib/lodash.js"></script>
     <script src="resources/lib/moment.js"></script>
     <script src="resources/lib/ui-bootstrap.js"></script>
@@ -51,7 +52,7 @@
     <!-- build:js resources/scripts/build.js -->
     <script src="resources/scripts/app.js"></script>
 
-    <script src="resources/scripts/services/http-auth-interceptor.js"></script>
+    <script src="resources/scripts/services/interceptor.js"></script>
     <script src="resources/scripts/services/auth.js"></script>
     <script src="resources/scripts/services/account.js"></script>
 
