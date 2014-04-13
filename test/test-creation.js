@@ -114,7 +114,7 @@ describe('Spring Generator', function () {
       'src/main/webapp/resources/scripts/controllers/register/register.js',
       'src/main/webapp/resources/scripts/services/account.js',
       'src/main/webapp/resources/scripts/services/auth.js',
-      'src/main/webapp/resources/scripts/services/http-auth-interceptor.js',
+      'src/main/webapp/resources/scripts/services/interceptor.js',
       'src/main/webapp/resources/scripts/app.js',
       'src/main/webapp/resources/styles/master.less',
       'src/main/webapp/resources/styles/mixins.less',
