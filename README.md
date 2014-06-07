@@ -1,4 +1,4 @@
-# Spring/Maven + Angular Generator
+# Spring/Gradle + Angular Generator
 
 [![Build Status](https://drone.io/github.com/countableSet/generator-spring/status.png)](https://drone.io/github.com/countableSet/generator-spring/latest) [![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table)
 
@@ -8,37 +8,11 @@ A generator for Yeoman.
 - Make sure to have [yeoman](https://github.com/yeoman/yo) installed: `npm install -g yo`
 - Install the generator: `npm install -g generator-spring` (Not currently available in npm)
 - Generate Project: `yo spring`
-- Run tomcat: `mvn tomcat7:run`
-- Run tests: `mvn test`
-- `http://localhost:8080/app`
-
-## JUnit Tests
-``` bash
-echelon:spring rachel$ mvn test
-[INFO] Scanning for projects...
-[INFO]
-[INFO] ------------------------------------------------------------------------
-[INFO] Building spring test 0.0.1-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Running ch.example.demo.test.repository.AccountRepositoryTest
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.09 sec
-
-Results :
-
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 8.820s
-[INFO] Finished at: Mon Mar 10 22:14:00 PDT 2014
-[INFO] Final Memory: 24M/226M
-[INFO] ------------------------------------------------------------------------
-```
+- Run embedded jetty: `gradle bootRun`
+- Run tests: `gradle test`
+- Build jar: `gradle build`
+- Run build jar: `java -jar build/libs/app-0.0.1.jar`
+- `http://localhost:8080`
 
 ## Karma Tests
 ``` bash
@@ -73,18 +47,18 @@ yo spring
 ```
 
 ### Controller
-Generates a controller in `src/main/webapp/resources/scripts/controllers`.
+Generates a controller in `src/main/resources/public/scripts/controllers`.
 
 Examples:
 ```bash
 $ yo spring:controller landing
-   create src/main/webapp/resources/scripts/controllers/landing/landing.js
-   create src/main/webapp/resources/scripts/controllers/landing/landing.html
-   create src/main/webapp/karma/controllers/landing/landing.js
+   create src/main/resources/public/scripts/controllers/landing/landing.js
+   create src/main/resources/public/scripts/controllers/landing/landing.html
+   create karma/controllers/landing/landing.js
 $ yo spring:controller management/workload
-   create src/main/webapp/resources/scripts/controllers/management/workload/workload.js
-   create src/main/webapp/resources/scripts/controllers/management/workload/workload.html
-   create src/main/webapp/karma/controllers/management/workload/workload.js
+   create src/main/resources/public/scripts/controllers/management/workload/workload.js
+   create src/main/resources/public/scripts/controllers/management/workload/workload.html
+   create karma/controllers/management/workload/workload.js
 ```
 
 ```javascript
@@ -100,13 +74,13 @@ angular.module('demoApp').controller('ManagementWorkloadCtrl', function ($scope)
 ```
 
 ### Directive
-Generates a directive in `src/main/webapp/resources/scripts/directives`.
+Generates a directive in `src/main/resources/public/scripts/directives`.
 
 Example:
 ```bash
 $ yo spring:directive menu
-   create src/main/webapp/resources/scripts/directives/menu.js
-   create src/main/webapp/karma/directives/menu.js
+   create src/main/resources/public/scripts/directives/menu.js
+   create karma/directives/menu.js
 ```
 
 ```javascript
@@ -122,13 +96,13 @@ angular.module('demoApp').directive('menu', function () {
 ```
 
 ### Filter
-Generates a filter in `src/main/webapp/resources/scripts/filters`.
+Generates a filter in `src/main/resources/public/scripts/filters`.
 
 Example:
 ```bash
 $ yo spring:filter status
-   create src/main/webapp/resources/scripts/filters/status.js
-   create src/main/webapp/karma/filters/status.js
+   create src/main/resources/public/scripts/filters/status.js
+   create karma/filters/status.js
 ```
 
 ```javascript
@@ -142,13 +116,13 @@ angular.module('demoApp').filter('status', function () {
 ```
 
 ### Service
-Generates a factory 'service' in `src/main/webapp/resources/scripts/servies`.
+Generates a factory 'service' in `src/main/resources/public/scripts/servies`.
 
 Example:
 ```bash
 $ yo spring:service schedule
-   create src/main/webapp/resources/scripts/services/schedule.js
-   create src/main/webapp/karma/services/schedule.js
+   create src/main/resources/public/scripts/services/schedule.js
+   create karma/services/schedule.js
 ```
 
 ```javascript
