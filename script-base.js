@@ -19,16 +19,16 @@ module.exports = Generator;
 util.inherits(Generator, yeoman.generators.NamedBase);
 
 Generator.prototype.resourcePath = function () {
-  return 'src/main/webapp/resources/';
+  return 'src/main/resources/public/';
 };
 
 Generator.prototype.testPath = function () {
-  return 'src/main/webapp/karma/';
+  return 'karma/';
 };
 
 Generator.prototype.addScriptToIndex = function (script) {
   try {
-    var fullPath = 'src/main/webapp/WEB-INF/pages/index.jsp';
+    var fullPath = 'src/main/resources/public/index.html';
     angularUtils.rewriteFile({
       file: fullPath,
       needle: '<!-- endbuild -->',

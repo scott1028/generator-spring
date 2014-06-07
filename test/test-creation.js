@@ -34,9 +34,10 @@ describe('Spring Generator', function () {
       '.jshintrc',
       'karma.conf.js',
       'package.json',
-      'pom.xml',
       'README.md',
-      'Vagrantfile'
+      'Vagrantfile',
+      'build.gradle',
+      'settings.gradle'
     ];
 
     this.app.run({}, function () {
@@ -48,14 +49,10 @@ describe('Spring Generator', function () {
   it('should create expected java package files', function (done) {
     var expected = [
       ['src/main/java/ch/example/demo/config/DataBaseConfig.java', /package ch\.example\.demo\.config;/],
-      ['src/main/java/ch/example/demo/config/Initializer.java', /package ch\.example\.demo\.config;/],
-      ['src/main/java/ch/example/demo/config/RootConfig.java', /package ch\.example\.demo\.config;/],
       ['src/main/java/ch/example/demo/config/SecurityConfig.java', /package ch\.example\.demo\.config;/],
-      ['src/main/java/ch/example/demo/config/SecurityInitializer.java', /package ch\.example\.demo\.config;/],
-      ['src/main/java/ch/example/demo/config/WebAppConfig.java', /package ch\.example\.demo\.config;/],
+      ['src/main/java/ch/example/demo/config/Application.java', /package ch\.example\.demo\.config;/],
 
       ['src/main/java/ch/example/demo/controller/AccountController.java', /package ch\.example\.demo\.controller;/],
-      ['src/main/java/ch/example/demo/controller/HomeController.java', /package ch\.example\.demo\.controller;/],
 
       ['src/main/java/ch/example/demo/model/AbstractEntity.java', /package ch\.example\.demo\.model;/],
       ['src/main/java/ch/example/demo/model/Account.java', /package ch\.example\.demo\.model;/],
@@ -97,30 +94,31 @@ describe('Spring Generator', function () {
 
   it('should create project related files', function (done) {
     var expected = [
-      'src/main/resources/app.local.properties',
+      'src/main/resources/application-local.properties',
       'src/main/resources/base-data.sql',
       'src/main/resources/log4j.properties',
-      'src/main/webapp/karma/controllers/login/login_spec.js',
-      'src/main/webapp/karma/controllers/main/main_spec.js',
-      'src/main/webapp/karma/controllers/register/register_spec.js',
-      'src/main/webapp/karma/services/account_spec.js',
-      'src/main/webapp/karma/services/auth_spec.js',
-      'src/main/webapp/resources/scripts/controllers/login/login.html',
-      'src/main/webapp/resources/scripts/controllers/login/login.js',
-      'src/main/webapp/resources/scripts/controllers/main/main.html',
-      'src/main/webapp/resources/scripts/controllers/main/main.js',
-      'src/main/webapp/resources/scripts/controllers/navbar/navbar.js',
-      'src/main/webapp/resources/scripts/controllers/register/register.html',
-      'src/main/webapp/resources/scripts/controllers/register/register.js',
-      'src/main/webapp/resources/scripts/services/account.js',
-      'src/main/webapp/resources/scripts/services/auth.js',
-      'src/main/webapp/resources/scripts/services/interceptor.js',
-      'src/main/webapp/resources/scripts/app.js',
-      'src/main/webapp/resources/styles/master.less',
-      'src/main/webapp/resources/styles/mixins.less',
-      'src/main/webapp/resources/styles/project.less',
-      'src/main/webapp/resources/styles/variables.less',
-      'src/main/webapp/WEB-INF/pages/index.jsp',
+      'src/main/resources/favicon.ico',
+      'karma/controllers/login/login_spec.js',
+      'karma/controllers/main/main_spec.js',
+      'karma/controllers/register/register_spec.js',
+      'karma/services/account_spec.js',
+      'karma/services/auth_spec.js',
+      'src/main/resources/public/scripts/controllers/login/login.html',
+      'src/main/resources/public/scripts/controllers/login/login.js',
+      'src/main/resources/public/scripts/controllers/main/main.html',
+      'src/main/resources/public/scripts/controllers/main/main.js',
+      'src/main/resources/public/scripts/controllers/navbar/navbar.js',
+      'src/main/resources/public/scripts/controllers/register/register.html',
+      'src/main/resources/public/scripts/controllers/register/register.js',
+      'src/main/resources/public/scripts/services/account.js',
+      'src/main/resources/public/scripts/services/auth.js',
+      'src/main/resources/public/scripts/services/interceptor.js',
+      'src/main/resources/public/scripts/app.js',
+      'src/main/resources/public/styles/master.less',
+      'src/main/resources/public/styles/mixins.less',
+      'src/main/resources/public/styles/project.less',
+      'src/main/resources/public/styles/variables.less',
+      'src/main/resources/public/index.html',
       'src/test/resources/application-test.properties',
       'src/test/resources/data.sql',
       'src/test/resources/log4j.properties'
@@ -137,10 +135,10 @@ describe('Spring Generator', function () {
       var deps = ['../../controller'];
       var controller = helpers.createGenerator('spring:controller', deps, ['foo']);
       var expected = [
-        ['src/main/webapp/resources/scripts/controllers/foo/foo.js', /controller\('FooCtrl'/],
-        ['src/main/webapp/resources/scripts/controllers/foo/foo.html', / /],
-        ['src/main/webapp/karma/spec/controllers/foo/foo.js', /describe\('Controller: FooCtrl'/],
-        ['src/main/webapp/WEB-INF/pages/index.jsp', /script src\="resources\/scripts\/controllers\/foo\/foo.js"/]
+        ['src/main/resources/public/scripts/controllers/foo/foo.js', /controller\('FooCtrl'/],
+        ['src/main/resources/public/scripts/controllers/foo/foo.html', / /],
+        ['karma/spec/controllers/foo/foo.js', /describe\('Controller: FooCtrl'/],
+        ['src/main/resources/public/index.html', /script src\="resources\/scripts\/controllers\/foo\/foo.js"/]
       ];
       this.app.run({}, function () {
         controller.run({}, function () {
@@ -154,10 +152,10 @@ describe('Spring Generator', function () {
       var deps = ['../../controller'];
       var controller = helpers.createGenerator('spring:controller', deps, ['foo/bar']);
       var expected = [
-        ['src/main/webapp/resources/scripts/controllers/foo/bar/bar.js', /controller\('FooBarCtrl'/],
-        ['src/main/webapp/resources/scripts/controllers/foo/bar/bar.html', / /],
-        ['src/main/webapp/karma/spec/controllers/foo/bar/bar.js', /describe\('Controller: FooBarCtrl'/],
-        ['src/main/webapp/WEB-INF/pages/index.jsp', /script src\="resources\/scripts\/controllers\/foo\/bar\/bar.js"/]
+        ['src/main/resources/public/scripts/controllers/foo/bar/bar.js', /controller\('FooBarCtrl'/],
+        ['src/main/resources/public/scripts/controllers/foo/bar/bar.html', / /],
+        ['karma/spec/controllers/foo/bar/bar.js', /describe\('Controller: FooBarCtrl'/],
+        ['src/main/resources/public/index.html', /script src\="resources\/scripts\/controllers\/foo\/bar\/bar.js"/]
       ];
       this.app.run({}, function () {
         controller.run({}, function () {
@@ -171,10 +169,10 @@ describe('Spring Generator', function () {
       var deps = ['../../controller'];
       var controller = helpers.createGenerator('spring:controller', deps, ['/foo/bar/']);
       var expected = [
-        ['src/main/webapp/resources/scripts/controllers/foo/bar/bar.js', /controller\('FooBarCtrl'/],
-        ['src/main/webapp/resources/scripts/controllers/foo/bar/bar.html', / /],
-        ['src/main/webapp/karma/spec/controllers/foo/bar/bar.js', /describe\('Controller: FooBarCtrl'/],
-        ['src/main/webapp/WEB-INF/pages/index.jsp', /script src\="resources\/scripts\/controllers\/foo\/bar\/bar.js"/]
+        ['src/main/resources/public/scripts/controllers/foo/bar/bar.js', /controller\('FooBarCtrl'/],
+        ['src/main/resources/public/scripts/controllers/foo/bar/bar.html', / /],
+        ['karma/spec/controllers/foo/bar/bar.js', /describe\('Controller: FooBarCtrl'/],
+        ['src/main/resources/public/index.html', /script src\="resources\/scripts\/controllers\/foo\/bar\/bar.js"/]
       ];
       this.app.run({}, function () {
         controller.run({}, function () {
@@ -190,9 +188,9 @@ describe('Spring Generator', function () {
       var deps = ['../../directive'];
       var directive = helpers.createGenerator('spring:directive', deps, ['foo']);
       var expected = [
-        ['src/main/webapp/resources/scripts/directives/foo.js', /directive\('foo'/],
-        ['src/main/webapp/karma/spec/directives/foo.js', /describe\('Directive: foo'/],
-        ['src/main/webapp/WEB-INF/pages/index.jsp', /script src\="resources\/scripts\/directives\/foo.js"/]
+        ['src/main/resources/public/scripts/directives/foo.js', /directive\('foo'/],
+        ['karma/spec/directives/foo.js', /describe\('Directive: foo'/],
+        ['src/main/resources/public/index.html', /script src\="resources\/scripts\/directives\/foo.js"/]
       ];
       this.app.run({}, function () {
         directive.run({}, function () {
@@ -208,9 +206,9 @@ describe('Spring Generator', function () {
       var deps = ['../../filter'];
       var filter = helpers.createGenerator('spring:filter', deps, ['foo']);
       var expected = [
-        ['src/main/webapp/resources/scripts/filters/foo.js', /filter\('foo'/],
-        ['src/main/webapp/karma/spec/filters/foo.js', /describe\('Filter: foo'/],
-        ['src/main/webapp/WEB-INF/pages/index.jsp', /script src\="resources\/scripts\/filters\/foo.js"/]
+        ['src/main/resources/public/scripts/filters/foo.js', /filter\('foo'/],
+        ['karma/spec/filters/foo.js', /describe\('Filter: foo'/],
+        ['src/main/resources/public/index.html', /script src\="resources\/scripts\/filters\/foo.js"/]
       ];
       this.app.run({}, function () {
         filter.run({}, function () {
@@ -226,9 +224,9 @@ describe('Spring Generator', function () {
       var deps = ['../../service'];
       var service = helpers.createGenerator('spring:service', deps, ['foo']);
       var expected = [
-        ['src/main/webapp/resources/scripts/services/foo.js', /factory\('FooService'/],
-        ['src/main/webapp/karma/spec/services/foo.js', /describe\('Service: FooService'/],
-        ['src/main/webapp/WEB-INF/pages/index.jsp', /script src\="resources\/scripts\/services\/foo.js"/]
+        ['src/main/resources/public/scripts/services/foo.js', /factory\('FooService'/],
+        ['karma/spec/services/foo.js', /describe\('Service: FooService'/],
+        ['src/main/resources/public/index.html', /script src\="resources\/scripts\/services\/foo.js"/]
       ];
       this.app.run({}, function () {
         service.run({}, function () {
