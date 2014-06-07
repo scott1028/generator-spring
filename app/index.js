@@ -42,6 +42,7 @@ SpringGenerator.prototype.baseFiles = function baseFile() {
   var testPath = path.join('src/test/java/', this.basePackage.toLowerCase().split('.').join('/'));
 
   this.directory('project/src', 'src');
+  this.directory('project/karma', 'karma');
   this.directory('java/main', mainPath);
   this.directory('java/test', testPath);
 };
@@ -55,7 +56,8 @@ SpringGenerator.prototype.other = function other() {
   this.copy('config/_jshintrc', '.jshintrc');
   this.copy('config/_karma.conf.js', 'karma.conf.js');
   this.copy('config/_package.json', 'package.json');
-  this.copy('config/_pom.xml', 'pom.xml');
   this.copy('config/_README.md', 'README.md');
   this.copy('config/_Vagrantfile', 'Vagrantfile');
+  this.copy('config/_build.gradle', 'build.gradle');
+  this.copy('config/_settings.gradle', 'settings.gradle');
 };

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>${siteTitle}</title>
+    <title><%= projectName %></title>
 
-    <!-- build:css resources/styles/build.css -->
-    <link href="resources/styles/master.less" rel="stylesheet/less" type="text/css">
-    <script type="text/javascript" src="resources/lib/less.js"></script>
+    <!-- build:css styles/build.css -->
+    <link href="styles/master.less" rel="stylesheet/less" type="text/css">
+    <script type="text/javascript" src="lib/less.js"></script>
     <!-- endbuild -->
 </head>
 
@@ -24,7 +24,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">${siteTitle}</a>
+                <a class="navbar-brand" href="#"><%= projectName %></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -41,25 +41,25 @@
     </div>
     <div class="container" ng-view=""></div>
 
-    <script src="resources/lib/angular.js"></script>
-    <script src="resources/lib/angular-resource.js"></script>
-    <script src="resources/lib/angular-route.js"></script>
-    <script src="resources/lib/angular-cookies.js"></script>
-    <script src="resources/lib/lodash.js"></script>
-    <script src="resources/lib/moment.js"></script>
-    <script src="resources/lib/ui-bootstrap.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-resource.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/angular-cookies.js"></script>
+    <script src="lib/lodash.js"></script>
+    <script src="lib/moment.js"></script>
+    <script src="lib/ui-bootstrap-tpls.js"></script>
 
-    <!-- build:js resources/scripts/build.js -->
-    <script src="resources/scripts/app.js"></script>
+    <!-- build:js scripts/build.js -->
+    <script src="scripts/app.js"></script>
 
-    <script src="resources/scripts/services/interceptor.js"></script>
-    <script src="resources/scripts/services/auth.js"></script>
-    <script src="resources/scripts/services/account.js"></script>
+    <script src="scripts/services/interceptor.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/services/account.js"></script>
 
-    <script src="resources/scripts/controllers/navbar/navbar.js"></script>
-    <script src="resources/scripts/controllers/main/main.js"></script>
-    <script src="resources/scripts/controllers/login/login.js"></script>
-    <script src="resources/scripts/controllers/register/register.js"></script>
+    <script src="scripts/controllers/navbar/navbar.js"></script>
+    <script src="scripts/controllers/main/main.js"></script>
+    <script src="scripts/controllers/login/login.js"></script>
+    <script src="scripts/controllers/register/register.js"></script>
     <!-- endbuild -->
 </body>
 </html>

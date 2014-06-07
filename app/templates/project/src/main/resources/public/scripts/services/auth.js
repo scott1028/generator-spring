@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('AuthSharedService', function ($rootScope, $http, $cookieStore, AccountService, authService, Session) {
+app.factory('AuthSharedService', function ($rootScope, $http, $cookieStore, AccountService, authService, Session) {
   return {
     login: function (param) {
       var data ="j_username=" + param.email +"&j_password=" + param.password +"&submit=Login";

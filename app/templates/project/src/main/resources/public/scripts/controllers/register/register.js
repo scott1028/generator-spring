@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('RegisterCtrl', function ($scope, AuthSharedService) {
+app.controller('RegisterCtrl', function ($scope, AuthSharedService) {
   $scope.input = {email: 'test@example.com', password: 'password'};
   $scope.register = function () {
     var errorCallback = function () {

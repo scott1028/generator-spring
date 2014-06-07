@@ -20,7 +20,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 @EnableJpaRepositories("<%= basePackage %>.repository")
-@PropertySource("classpath:app.<%= _.unescape('${spring.profiles.active}') %>.properties")
 public class DataBaseConfig {
 
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

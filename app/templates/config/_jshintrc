@@ -1,4 +1,3 @@
-
 {
   "bitwise": true,
   "camelcase": false,
@@ -29,6 +28,7 @@
   "node": true,
 
   "globals": {
+    "app": false,
     "angular": false,
     "afterEach": false,
     "beforeEach": false,
