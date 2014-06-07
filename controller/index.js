@@ -5,24 +5,25 @@ var ScriptBase = require('../script-base.js');
 
 function Generator() {
   ScriptBase.apply(this, arguments);
+  var name = this.name;
 
   // if the controller name is suffixed with ctrl, remove the suffix
   // if the controller name is just "ctrl," don't append/remove "ctrl"
-  if (this.name && this.name.toLowerCase() !== 'ctrl' && this.name.substr(-4).toLowerCase() === 'ctrl') {
-    this.name = this.name.slice(0, -4);
+  if (name && name.toLowerCase() !== 'ctrl' && name.substr(-4).toLowerCase() === 'ctrl') {
+    name = name.slice(0, -4);
   }
 
-  if (this.name.substr(0) === '/') {
-    this.name = this.name.slice(0, 1);
+  if (name.substr(0) === '/') {
+    name = name.slice(0, 1);
   }
 
-  if (this.name.substr(-1) === '/') {
-    this.name = this.name.slice(0, -1);
+  if (name.substr(-1) === '/') {
+    name = name.slice(0, -1);
   }
 
-  this.path = this.name;
-  if (this.name.lastIndexOf('/') > 0) {
-    this.fileName = this.name.substr(this.name.lastIndexOf('/') + 1, this.name.length);
+  this.path = name;
+  if (name.lastIndexOf('/') > 0) {
+    this.fileName = name.substr(name.lastIndexOf('/') + 1, name.length);
     this.path = this.path + '/' + this.fileName;
   } else {
     this.path = this.path + '/' + this.path;
