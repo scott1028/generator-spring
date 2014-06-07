@@ -42,6 +42,7 @@ app.run(function ($rootScope, $location, AuthSharedService, AccountService, Sess
   });
 
   $rootScope.$on('event:auth-loginCancelled', function() {
+    $rootScope.authenticated = AuthSharedService.isAuthenticated();
     $location.path('');
   });
 
