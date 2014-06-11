@@ -96,7 +96,6 @@ describe('Spring Generator', function () {
     var expected = [
       'src/main/resources/application-local.properties',
       'src/main/resources/base-data.sql',
-      'src/main/resources/log4j.properties',
       'src/main/resources/favicon.ico',
       'karma/controllers/login/login_spec.js',
       'karma/controllers/main/main_spec.js',
@@ -121,7 +120,7 @@ describe('Spring Generator', function () {
       'src/main/resources/public/index.html',
       'src/test/resources/application-test.properties',
       'src/test/resources/data.sql',
-      'src/test/resources/log4j.properties'
+      'src/test/resources/logback.xml'
     ];
 
     this.app.run({}, function () {

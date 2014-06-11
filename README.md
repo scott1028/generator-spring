@@ -14,6 +14,22 @@ A generator for Yeoman.
 - Run build jar: `java -jar build/libs/app-0.0.1.jar`
 - `http://localhost:8080`
 
+## jUnit Tests
+``` bash
+$ gradle test
+:compileJava
+:processResources UP-TO-DATE
+:classes
+:compileTestJava
+:processTestResources UP-TO-DATE
+:testClasses
+:test
+
+BUILD SUCCESSFUL
+
+Total time: 17.699 secs
+```
+
 ## Karma Tests
 ``` bash
 echelon:spring rachel$ grunt test
