@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('NavbarCtrl', function ($rootScope, $scope, AuthSharedService) {
+app.controller('NavbarCtrl', ['$rootScope', '$scope', 'AuthSharedService', function ($rootScope, $scope, AuthSharedService) {
   $scope.account = $rootScope.account;
   $scope.authenticated = $rootScope.authenticated;
   $rootScope.$watch('account', function (newValue) {
@@ -13,4 +13,4 @@ angular.module('app').controller('NavbarCtrl', function ($rootScope, $scope, Aut
   $scope.logout = function () {
     AuthSharedService.logout();
   };
-});
+}]);

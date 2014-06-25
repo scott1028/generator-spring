@@ -6,6 +6,8 @@
 *.iws
 .idea
 
+gradle
+classes
 .gradle
 .vagrant
 
@@ -15,8 +17,9 @@ build
 node_modules
 bower_components
 test-results.xml
+karma/test-results.xml
 
 
-src/main/webapp/resources/styles/bootstrap
-src/main/webapp/resources/styles/fonts
-src/main/webapp/resources/lib
+src/main/resources/public/styles/bootstrap
+src/main/resources/public/styles/fonts
+src/main/resources/public/lib

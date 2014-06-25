@@ -7,15 +7,18 @@ describe('Service: AuthSharedService', function () {
 
   beforeEach(module('app'));
 
-  var AuthSharedService, AuthService, mockBackend, rootScope;
+  var AuthSharedService, AuthService, mockBackend, rootScope, Session;
   beforeEach(inject(function ($injector) {
     AuthSharedService = $injector.get('AuthSharedService');
     AuthService = $injector.get('authService');
     mockBackend = $injector.get('$httpBackend');
     rootScope = $injector.get('$rootScope');
+    Session = $injector.get('Session');
     spyOn(rootScope, '$broadcast').and.callThrough();
     spyOn(AuthService, 'loginConfirmed');
     spyOn(AuthService, 'loginCancelled');
+    spyOn(Session, 'destroy');
+    spyOn(Session, 'create');
 
     mockBackend.whenGET('account').respond(accountInfo);
     mockBackend.whenPOST('auth/login').respond('{}');
@@ -31,16 +34,15 @@ describe('Service: AuthSharedService', function () {
     var data = {email: 'test@example.com', password: 'password'};
     AuthSharedService.login(data);
     mockBackend.flush();
-    expect(rootScope.authenticationError).toBe(false);
     expect(AuthService.loginConfirmed).toHaveBeenCalled();
+    expect(Session.create).toHaveBeenCalled();
   });
 
   it('should logout and call auth service', function () {
     AuthSharedService.logout();
     mockBackend.flush();
-    expect(rootScope.authenticationError).toBe(false);
-    expect(rootScope.account).toEqual({$resolved: true});
     expect(AuthService.loginCancelled).toHaveBeenCalled();
+    expect(Session.destroy).toHaveBeenCalled();
   });
 
   it('should register and call broadcast', function () {

@@ -1,26 +1,26 @@
 module.exports = function(config) {
   config.set({
-    basePath: 'src/main/webapp',
+    basePath: 'src/main/resources/public/',
 
     frameworks: ['jasmine'],
 
     files: [
-      'resources/lib/angular.js',
-      '../../../bower_components/angular-mocks/angular-mocks.js',
-      'resources/lib/*.js',
-      'resources/scripts/**/*.js',
-      'karma/**/*.js'
+      'lib/angular.js',
+      '../../../../bower_components/angular-mocks/angular-mocks.js',
+      'lib/*.js',
+      'scripts/**/*.js',
+      '../../../../karma/**/*.js'
     ],
 
     exclude: [
-      'resources/lib/less.js'
+      'lib/less.js'
     ],
 
     reporters: ['progress', 'junit'],
 
-    junitReporter: {
-      outputFile: '../../../test-results.xml'
-    },
+//    junitReporter: {
+//      outputFile: '../karma/test-results.xml'
+//    },
 
     port: 9876,
     colors: true,
