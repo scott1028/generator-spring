@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('auth-interceptor', ['app-location-buffer']).factory('authService', function($rootScope, locationBuffer) {
+angular.module('auth-interceptor', ['app-location-buffer'])
+.factory('authService', ['$rootScope', 'locationBuffer', function($rootScope, locationBuffer) {
   return {
     loginConfirmed: function(data) {
       $rootScope.$broadcast('event:auth-loginConfirmed', data);
@@ -12,9 +13,9 @@ angular.module('auth-interceptor', ['app-location-buffer']).factory('authService
       $rootScope.$broadcast('event:auth-loginCancelled', data);
     }
   };
-})
-.config(function($httpProvider) {
-  $httpProvider.interceptors.push(function($rootScope, $q, $location, locationBuffer) {
+}])
+.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push(['$rootScope', '$q', '$location', 'locationBuffer', function($rootScope, $q, $location, locationBuffer) {
     return {
       responseError: function(rejection) {
         if (rejection.status === 401 && !rejection.config.ignoreAuthModule) {
@@ -26,10 +27,11 @@ angular.module('auth-interceptor', ['app-location-buffer']).factory('authService
         return $q.reject(rejection);
       }
     };
-  });
-});
+  }]);
+}]);
 
-angular.module('app-location-buffer', []).factory('locationBuffer', function($injector) {
+angular.module('app-location-buffer', [])
+.factory('locationBuffer', ['$injector', function($injector) {
   var buffer = '';
   var $location;
 
@@ -52,4 +54,4 @@ angular.module('app-location-buffer', []).factory('locationBuffer', function($in
       navigateToLocation(buffer);
     }
   };
-});
+}]);

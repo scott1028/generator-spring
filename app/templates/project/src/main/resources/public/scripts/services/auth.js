@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('AuthSharedService', function ($rootScope, $http, $cookieStore, AccountService, authService, Session) {
+app.factory('AuthSharedService', ['$rootScope', '$http', '$cookieStore', 'AccountService', 'authService', 'Session', function ($rootScope, $http, $cookieStore, AccountService, authService, Session) {
   return {
     login: function (param) {
       var data ="j_username=" + param.email +"&j_password=" + param.password +"&submit=Login";
@@ -58,9 +58,9 @@ app.factory('AuthSharedService', function ($rootScope, $http, $cookieStore, Acco
       return !!Session.email;
     }
   };
-});
+}]);
 
-angular.module('app').factory('Session', function ($cookieStore) {
+angular.module('app').factory('Session', ['$cookieStore', function ($cookieStore) {
   this.create = function (id, email, firstName, lastName, authorities) {
     this.id = id;
     this.email = email;
@@ -78,4 +78,4 @@ angular.module('app').factory('Session', function ($cookieStore) {
     $cookieStore.remove('account');
   };
   return this;
-});
+}]);

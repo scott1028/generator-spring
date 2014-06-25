@@ -14,7 +14,7 @@ A generator for Yeoman.
 - Run build jar: `java -jar build/libs/app-0.0.1.jar`
 - `http://localhost:8080`
 
-## jUnit Tests
+## JUnit Tests
 ``` bash
 $ gradle test
 :compileJava
@@ -32,7 +32,7 @@ Total time: 17.699 secs
 
 ## Karma Tests
 ``` bash
-echelon:spring rachel$ grunt test
+$ grunt test
 Running "jshint:all" (jshint) task
 >> 7 files lint free.
 

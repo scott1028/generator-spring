@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('RegisterCtrl', function ($scope, AuthSharedService) {
+app.controller('RegisterCtrl', ['$scope', 'AuthSharedService', function ($scope, AuthSharedService) {
   $scope.input = {email: 'test@example.com', password: 'password'};
   $scope.register = function () {
     var errorCallback = function () {
@@ -9,4 +9,4 @@ app.controller('RegisterCtrl', function ($scope, AuthSharedService) {
     };
     AuthSharedService.register($scope.input, errorCallback);
   };
-});
+}]);

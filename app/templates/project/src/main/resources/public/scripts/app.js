@@ -3,7 +3,7 @@
 /*jshint -W079 */
 var app = angular.module('app', ['auth-interceptor', 'ngRoute', 'ngResource', 'ngCookies']);
 
-app.config(function ($routeProvider, USER_ROLES) {
+app.config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
   $routeProvider
     .when('/', {
       templateUrl: 'scripts/controllers/main/main.html',
@@ -24,9 +24,9 @@ app.config(function ($routeProvider, USER_ROLES) {
       redirectTo: '/',
       access: { authorizedRoles: [USER_ROLES.all] }
     });
-});
+}]);
 
-app.run(function ($rootScope, $location, AuthSharedService, AccountService, Session, USER_ROLES) {
+app.run(['$rootScope', '$location', 'AuthSharedService', 'AccountService', 'Session', 'USER_ROLES', function ($rootScope, $location, AuthSharedService, AccountService, Session, USER_ROLES) {
   $rootScope.account = AccountService.get();
 
   $rootScope.$on('event:auth-registerLogin', function (evt, data) {
@@ -67,7 +67,7 @@ app.run(function ($rootScope, $location, AuthSharedService, AccountService, Sess
       }
     }
   });
-});
+}]);
 
 app.constant('USER_ROLES', {
   all: '*',
