@@ -54,6 +54,7 @@ SpringGenerator.prototype.other = function other() {
   this.copy('config/_gitignore', '.gitignore');
   this.copy('config/_Gruntfile.js', 'Gruntfile.js');
   this.copy('config/_jshintrc', '.jshintrc');
+  this.copy('config/_karma.ci.conf.js', 'karma.ci.conf.js');
   this.copy('config/_karma.conf.js', 'karma.conf.js');
   this.copy('config/_package.json', 'package.json');
   this.copy('config/_README.md', 'README.md');
