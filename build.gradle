@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.5.RELEASE")
+        classpath("org.springframework:springloaded:1.2.0.RELEASE")
     }
 }
 
@@ -41,6 +42,19 @@ dependencies {
     compile("org.apache.tomcat.embed:tomcat-embed-jasper")
     testCompile("com.jayway.jsonpath:json-path:0.9.1")
     testCompile("com.jayway.jsonpath:json-path-assert:0.9.1")
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 task wrapper(type: Wrapper) {
