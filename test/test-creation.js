@@ -2,6 +2,7 @@
 
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
+var assert  = require('yeoman-generator').assert;
 
 describe('Spring Generator', function () {
   beforeEach(function (done) {
@@ -41,7 +42,7 @@ describe('Spring Generator', function () {
     ];
 
     this.app.run({}, function () {
-      helpers.assertFile(expected);
+      assert.files(expected);
       done();
     });
   });
@@ -74,20 +75,20 @@ describe('Spring Generator', function () {
     ];
 
     this.app.run({}, function () {
-      helpers.assertFileContent(expected);
+      assert.fileContent(expected);
       done();
     });
   });
 
   it('should create junit test java files', function (done) {
     var expected = [
-      ['src/test/java/ch/example/demo/config/MockAuditorAware.java', /package ch\.example\.demo\.test\.config;/],
-      ['src/test/java/ch/example/demo/config/TestConfig.java', /package ch\.example\.demo\.test\.config;/],
-      ['src/test/java/ch/example/demo/repository/BaseIntegrationTest.java', /package ch\.example\.demo\.test\.repository;/]
+      ['src/test/java/ch/example/demo/test/config/MockAuditorAware.java', /package ch\.example\.demo\.test\.config;/],
+      ['src/test/java/ch/example/demo/test/config/TestConfig.java', /package ch\.example\.demo\.test\.config;/],
+      ['src/test/java/ch/example/demo/test/repository/BaseIntegrationTest.java', /package ch\.example\.demo\.test\.repository;/]
     ];
 
     this.app.run({}, function () {
-      helpers.assertFileContent(expected);
+      assert.fileContent(expected);
       done();
     });
   });
@@ -124,7 +125,7 @@ describe('Spring Generator', function () {
     ];
 
     this.app.run({}, function () {
-      helpers.assertFile(expected);
+      assert.files(expected);
       done();
     });
   });
@@ -141,7 +142,7 @@ describe('Spring Generator', function () {
       ];
       this.app.run({}, function () {
         controller.run({}, function () {
-          helpers.assertFileContent(expected);
+          assert.fileContent(expected);
           done();
         });
       });
@@ -158,7 +159,7 @@ describe('Spring Generator', function () {
       ];
       this.app.run({}, function () {
         controller.run({}, function () {
-          helpers.assertFileContent(expected);
+          assert.fileContent(expected);
           done();
         });
       });
@@ -175,7 +176,7 @@ describe('Spring Generator', function () {
       ];
       this.app.run({}, function () {
         controller.run({}, function () {
-          helpers.assertFileContent(expected);
+          assert.fileContent(expected);
           done();
         });
       });
@@ -193,7 +194,7 @@ describe('Spring Generator', function () {
       ];
       this.app.run({}, function () {
         directive.run({}, function () {
-          helpers.assertFileContent(expected);
+          assert.fileContent(expected);
           done();
         });
       });
@@ -211,7 +212,7 @@ describe('Spring Generator', function () {
       ];
       this.app.run({}, function () {
         filter.run({}, function () {
-          helpers.assertFileContent(expected);
+          assert.fileContent(expected);
           done();
         });
       });
@@ -229,7 +230,7 @@ describe('Spring Generator', function () {
       ];
       this.app.run({}, function () {
         service.run({}, function () {
-          helpers.assertFileContent(expected);
+          assert.fileContent(expected);
           done();
         });
       });

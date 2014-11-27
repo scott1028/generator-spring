@@ -39,7 +39,7 @@ SpringGenerator.prototype.askFor = function askFor() {
 
 SpringGenerator.prototype.baseFiles = function baseFile() {
   var mainPath = path.join('src/main/java/', this.basePackage.toLowerCase().split('.').join('/'));
-  var testPath = path.join('src/test/java/', this.basePackage.toLowerCase().split('.').join('/'));
+  var testPath = path.join('src/test/java/', this.basePackage.toLowerCase().split('.').join('/'), 'test/');
 
   this.directory('project/src', 'src');
   this.directory('project/karma', 'karma');
