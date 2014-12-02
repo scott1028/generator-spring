@@ -1,64 +1,66 @@
 'use strict';
+
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-var SpringGenerator = module.exports = function SpringGenerator(args, options) {
-  yeoman.generators.Base.apply(this, arguments);
+var SpringGenerator = yeoman.generators.Base.extend({
+  initializing: function () {
+    this.pkg = require('../package.json');
+  },
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+    this.option('skip-install');
+  },
+  prompting: function () {
+    var done = this.async();
+    this.log(this.yeoman);
 
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
-  });
+    var prompts = [{
+      name: 'projectName',
+      message: 'What is the project name?',
+      default: 'Demo App'
+    }, {
+      name: 'basePackage',
+      message: 'What is the base project package name (ch.example.projectname)?',
+      default: 'ch.example.demo'
+    }];
 
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-};
+    this.prompt(prompts, function (props) {
+      this.projectName = props.projectName;
+      this.basePackage = props.basePackage;
+      done();
+    }.bind(this));
+  },
+  writing: {
+    javafiles: function () {
+      var mainPath = path.join('src/main/java/', this.basePackage.toLowerCase().split('.').join('/'));
+      var testPath = path.join('src/test/java/', this.basePackage.toLowerCase().split('.').join('/'), 'test/');
 
-util.inherits(SpringGenerator, yeoman.generators.Base);
+      this.directory('project/src', 'src');
+      this.directory('project/karma', 'karma');
+      this.directory('java/main', mainPath);
+      this.directory('java/test', testPath);
+    },
+    projectfiles: function () {
+      this.src.copy('config/_bootstrap.sh', 'vagrant/bootstrap.sh');
+      this.src.copy('config/_bower.json', 'bower.json');
+      this.src.copy('config/_bowerrc', '.bowerrc');
+      this.src.copy('config/_gitignore', '.gitignore');
+      this.src.copy('config/_Gruntfile.js', 'Gruntfile.js');
+      this.src.copy('config/_jshintrc', '.jshintrc');
+      this.src.copy('config/_karma.ci.conf.js', 'karma.ci.conf.js');
+      this.src.copy('config/_karma.conf.js', 'karma.conf.js');
+      this.src.copy('config/_package.json', 'package.json');
+      this.src.copy('config/_README.md', 'README.md');
+      this.src.copy('config/_Vagrantfile', 'Vagrantfile');
+      this.src.copy('config/_build.gradle', 'build.gradle');
+      this.src.copy('config/_settings.gradle', 'settings.gradle');
+    }
+  },
+  end: function () {
+    this.installDependencies({ skipInstall: this.options['skip-install'] });
+  }
+});
 
-SpringGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
-
-  console.log(this.yeoman);
-
-  var prompts = [{
-    name: 'projectName',
-    message: 'What is the project name?',
-    default: 'Demo App'
-  }, {
-    name: 'basePackage',
-    message: 'What is the base project package name (ch.example.projectname)?',
-    default: 'ch.example.demo'
-  }];
-
-  this.prompt(prompts, function (props) {
-    this.projectName = props.projectName;
-    this.basePackage = props.basePackage;
-    cb();
-  }.bind(this));
-};
-
-SpringGenerator.prototype.baseFiles = function baseFile() {
-  var mainPath = path.join('src/main/java/', this.basePackage.toLowerCase().split('.').join('/'));
-  var testPath = path.join('src/test/java/', this.basePackage.toLowerCase().split('.').join('/'), 'test/');
-
-  this.directory('project/src', 'src');
-  this.directory('project/karma', 'karma');
-  this.directory('java/main', mainPath);
-  this.directory('java/test', testPath);
-};
-
-SpringGenerator.prototype.other = function other() {
-  this.copy('config/_bootstrap.sh', 'vagrant/bootstrap.sh');
-  this.copy('config/_bower.json', 'bower.json');
-  this.copy('config/_bowerrc', '.bowerrc');
-  this.copy('config/_gitignore', '.gitignore');
-  this.copy('config/_Gruntfile.js', 'Gruntfile.js');
-  this.copy('config/_jshintrc', '.jshintrc');
-  this.copy('config/_karma.ci.conf.js', 'karma.ci.conf.js');
-  this.copy('config/_karma.conf.js', 'karma.conf.js');
-  this.copy('config/_package.json', 'package.json');
-  this.copy('config/_README.md', 'README.md');
-  this.copy('config/_Vagrantfile', 'Vagrantfile');
-  this.copy('config/_build.gradle', 'build.gradle');
-  this.copy('config/_settings.gradle', 'settings.gradle');
-};
+module.exports = SpringGenerator;
