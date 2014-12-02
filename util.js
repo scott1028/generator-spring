@@ -2,9 +2,24 @@
 var path = require('path');
 var fs = require('fs');
 
+function addScriptToIndex (script) {
+  try {
+    var fullPath = 'src/main/resources/public/index.html';
+    this.rewriteFile({
+      file: fullPath,
+      needle: '<!-- endbuild -->',
+      splicable: [
+      '<script src="' + script + '.js"></script>'
+      ]
+    });
+  } catch (e) {
+    console.log('\nUnable to find '.yellow + fullPath + '. Reference to '.yellow + script + '.js ' + 'not added.\n'.yellow);
+  }
+};
+
 function escapeRegExp (str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-}
+};
 
 function rewrite (args) {
   // check if splicable is already in the body text
@@ -40,7 +55,7 @@ function rewrite (args) {
   }).join('\n'));
 
   return lines.join('\n');
-}
+};
 
 function rewriteFile (args) {
   args.path = args.path || process.cwd();
@@ -50,9 +65,20 @@ function rewriteFile (args) {
   var body = rewrite(args);
 
   fs.writeFileSync(fullPath, body);
-}
+};
+
+function resourcePath () {
+  return 'src/main/resources/public/';
+};
+
+function testPath () {
+  return 'karma/';
+};
 
 module.exports = {
+  addScriptToIndex: addScriptToIndex,
   rewrite: rewrite,
-  rewriteFile: rewriteFile
+  rewriteFile: rewriteFile,
+  resourcePath: resourcePath,
+  testPath: testPath
 };
