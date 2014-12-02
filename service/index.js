@@ -1,18 +1,17 @@
 'use strict';
 var path = require('path');
 var util = require('util');
-var ScriptBase = require('../script-base.js');
+var yeoman = require('yeoman-generator');
+var genUtil = require('../util.js');
 
-function Generator() {
-  ScriptBase.apply(this, arguments);
-}
+var ServiceGenerator = yeoman.generators.NamedBase.extend({
+  writing: function () {
+    this.template('_service.js',
+        path.join(genUtil.resourcePath(), 'scripts/services/', this.name + '.js'));
+    this.template('_spec.js',
+        path.join(genUtil.testPath(), 'spec/services/', this.name + '.js'));
+    genUtil.addScriptToIndex('resources/scripts/services/' + this.name);
+  }
+});
 
-module.exports = Generator;
-
-util.inherits(Generator, ScriptBase);
-
-Generator.prototype.createServiceFiles = function createServiceFiles() {
-  this.template('_service.js', path.join(this.resourcePath(), 'scripts/services/', this.name + '.js'));
-  this.template('_spec.js', path.join(this.testPath(), 'spec/services/', this.name + '.js'));
-  this.addScriptToIndex('resources/scripts/services/' + this.name);
-};
+module.exports = ServiceGenerator;
