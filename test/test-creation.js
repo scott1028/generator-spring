@@ -29,7 +29,8 @@ describe('Spring Generator Test Creation', function () {
         'README.md',
         'Vagrantfile',
         'build.gradle',
-        'settings.gradle'
+        'settings.gradle',
+        'circle.yml'
       ];
 
       assert.file(expected);

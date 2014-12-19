@@ -56,6 +56,7 @@ var SpringGenerator = yeoman.generators.Base.extend({
       this.src.copy('config/_Vagrantfile', 'Vagrantfile');
       this.src.copy('config/_build.gradle', 'build.gradle');
       this.src.copy('config/_settings.gradle', 'settings.gradle');
+      this.src.copy('config/_circle.yml', 'circle.yml');
     }
   },
   end: function () {
