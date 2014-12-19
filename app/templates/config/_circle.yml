@@ -13,3 +13,6 @@ test:
   override:
     - gradle test
     - ./node_modules/grunt-cli/bin/grunt test
+general:
+  artifacts:
+    - build/reports

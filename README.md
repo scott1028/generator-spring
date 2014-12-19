@@ -1,6 +1,10 @@
 # Spring/Gradle + Angular Generator
 
-[![Circle CI](https://circleci.com/gh/countableSet/generator-spring.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring) [![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table)
+General: [![Circle CI](https://circleci.com/gh/countableSet/generator-spring.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring)
+
+sample-app Branch: [![Circle CI](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app.svg?style=svg)](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app)
+
+[![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table)
 
 A generator for Yeoman. View sample generation in [sample-app branch](https://github.com/countableSet/generator-spring/tree/sample-app).
 
