@@ -1,0 +1,15 @@
+machine:
+  node:
+    version:
+      0.10.28
+  java:
+    version:
+      oraclejdk8
+dependencies:
+  override:
+    - npm install
+    - ./node_modules/grunt-cli/bin/grunt
+test:
+  override:
+    - gradle test
+    - ./node_modules/grunt-cli/bin/grunt test
