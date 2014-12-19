@@ -25,6 +25,7 @@ describe('Spring Generator Test Creation', function () {
         'Gruntfile.js',
         '.jshintrc',
         'karma.conf.js',
+        'karma.ci.conf.js',
         'package.json',
         'README.md',
         'Vagrantfile',
@@ -34,6 +35,15 @@ describe('Spring Generator Test Creation', function () {
       ];
 
       assert.file(expected);
+    });
+
+    it('should template expected config files', function () {
+      var expected = [
+        ['karma.ci.conf.js', /Demo App/],
+        ['README.md', /Demo App/]
+      ];
+
+      assert.fileContent(expected);
     });
 
     it('should create expected java package files', function () {

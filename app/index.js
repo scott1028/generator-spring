@@ -49,10 +49,18 @@ var SpringGenerator = yeoman.generators.Base.extend({
       this.src.copy('config/_gitignore', '.gitignore');
       this.src.copy('config/_Gruntfile.js', 'Gruntfile.js');
       this.src.copy('config/_jshintrc', '.jshintrc');
-      this.src.copy('config/_karma.ci.conf.js', 'karma.ci.conf.js');
       this.src.copy('config/_karma.conf.js', 'karma.conf.js');
+      this.fs.copyTpl(
+        this.templatePath('config/_karma.ci.conf.js'),
+        this.destinationPath('karma.ci.conf.js'),
+        { projectName: this.projectName }
+      );
       this.src.copy('config/_package.json', 'package.json');
-      this.src.copy('config/_README.md', 'README.md');
+      this.fs.copyTpl(
+        this.templatePath('config/_README.md'),
+        this.destinationPath('README.md'),
+        { projectName: this.projectName }
+      );
       this.src.copy('config/_Vagrantfile', 'Vagrantfile');
       this.src.copy('config/_build.gradle', 'build.gradle');
       this.src.copy('config/_settings.gradle', 'settings.gradle');
