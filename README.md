@@ -1,8 +1,6 @@
 # Spring/Gradle + Angular Generator
 
-General: [![Circle CI](https://circleci.com/gh/countableSet/generator-spring.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring)
-
-sample-app Branch: [![Circle CI](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app.svg?style=svg)](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app)
+[![Circle CI](https://circleci.com/gh/countableSet/generator-spring.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring) sample-app branch [![Circle CI](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app)
 
 [![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table)
 
