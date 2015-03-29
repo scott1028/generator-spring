@@ -2,7 +2,6 @@ module.exports = function(grunt) {
   'use strict';
 
   var rename = function (dest, src) { return dest + src.substring(0, src.indexOf('.min')) + '.js';};
-  var renameVersion = function (dest, src) { return dest + src.substring(0, src.indexOf('-')) + '.js'; };
   var genBowerPath = function (path) { return bowerPath + path; };
   var basePath = 'src/main/resources/public/';
   var bowerPath = 'bower_components/';
@@ -43,12 +42,12 @@ module.exports = function(grunt) {
           {expand: true, cwd: genBowerPath('angular-route/'), src: ['angular-route.js'], dest: libPath},
           {expand: true, cwd: genBowerPath('angular-cookies/'), src: ['angular-cookies.js'], dest: libPath},
 
-          {expand: true, cwd: genBowerPath('lodash/dist/'), src: ['lodash.js'], dest: libPath},
+          {expand: true, cwd: genBowerPath('lodash/'), src: ['lodash.js'], dest: libPath},
           {expand: true, cwd: genBowerPath('momentjs/'), src: ['moment.js'], dest: libPath},
-          {expand: true, cwd: genBowerPath('less.js/dist/'), src: ['less-1.6.1.js'], dest: libPath, rename: renameVersion},
+          {expand: true, cwd: genBowerPath('less.js/dist/'), src: ['less.js'], dest: libPath},
           {expand: true, cwd: genBowerPath('angular-ui-bootstrap-bower/'), src: ['ui-bootstrap-tpls.js'], dest: libPath},
 
-          {expand: true, cwd: genBowerPath('bootstrap/less/'), src: ['*.less'], dest: stylesPath},
+          {expand: true, cwd: genBowerPath('bootstrap/less/'), src: ['**'], dest: stylesPath},
           {expand: true, cwd: genBowerPath('bootstrap/dist/fonts/'), src: ['glyphicons*'], dest: fontsPath}
         ]
       },
@@ -59,9 +58,9 @@ module.exports = function(grunt) {
           {expand: true, cwd: genBowerPath('angular-route/'), src: ['angular-route.min.js'], dest: libPath, rename: rename},
           {expand: true, cwd: genBowerPath('angular-cookies/'), src: ['angular-cookies.min.js'], dest: libPath, rename: rename},
 
-          {expand: true, cwd: genBowerPath('lodash/dist/'), src: ['lodash.min.js'], dest: libPath, rename: rename},
+          {expand: true, cwd: genBowerPath('lodash/'), src: ['lodash.min.js'], dest: libPath, rename: rename},
           {expand: true, cwd: genBowerPath('momentjs/min/'), src: ['moment.min.js'], dest: libPath, rename: rename},
-          {expand: true, cwd: genBowerPath('less.js/dist/'), src: ['less-1.6.1.min.js'], dest: libPath, rename: renameVersion},
+          {expand: true, cwd: genBowerPath('less.js/dist/'), src: ['less.min.js'], dest: libPath},
           {expand: true, cwd: genBowerPath('angular-ui-bootstrap-bower/'), src: ['ui-bootstrap-tpls.min.js'], dest: libPath, rename: rename},
 
           {expand: true, cwd: genBowerPath('bootstrap/less/'), src: ['*.less'], dest: stylesPath},
