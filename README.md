@@ -25,16 +25,18 @@ A generator for Yeoman. View sample generation in [sample-app branch](https://gi
 ``` bash
 $ gradle test
 :compileJava
-:processResources UP-TO-DATE
+:processResources
 :classes
 :compileTestJava
-:processTestResources UP-TO-DATE
+:processTestResources
 :testClasses
 :test
 
+ch.example.demo.test.repository.AccountRepositoryTest > shouldFindByEmail PASSED
+
 BUILD SUCCESSFUL
 
-Total time: 17.699 secs
+Total time: 15.52 secs
 ```
 
 ## Karma Tests
