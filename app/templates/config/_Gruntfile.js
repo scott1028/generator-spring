@@ -45,7 +45,6 @@ module.exports = function(grunt) {
           {expand: true, cwd: genBowerPath('lodash/'), src: ['lodash.js'], dest: libPath},
           {expand: true, cwd: genBowerPath('momentjs/'), src: ['moment.js'], dest: libPath},
           {expand: true, cwd: genBowerPath('less.js/dist/'), src: ['less.js'], dest: libPath},
-          {expand: true, cwd: genBowerPath('angular-ui-bootstrap-bower/'), src: ['ui-bootstrap-tpls.js'], dest: libPath},
 
           {expand: true, cwd: genBowerPath('bootstrap/less/'), src: ['**'], dest: stylesPath},
           {expand: true, cwd: genBowerPath('bootstrap/dist/fonts/'), src: ['glyphicons*'], dest: fontsPath}
@@ -61,7 +60,6 @@ module.exports = function(grunt) {
           {expand: true, cwd: genBowerPath('lodash/'), src: ['lodash.min.js'], dest: libPath, rename: rename},
           {expand: true, cwd: genBowerPath('momentjs/min/'), src: ['moment.min.js'], dest: libPath, rename: rename},
           {expand: true, cwd: genBowerPath('less.js/dist/'), src: ['less.min.js'], dest: libPath},
-          {expand: true, cwd: genBowerPath('angular-ui-bootstrap-bower/'), src: ['ui-bootstrap-tpls.min.js'], dest: libPath, rename: rename},
 
           {expand: true, cwd: genBowerPath('bootstrap/less/'), src: ['*.less'], dest: stylesPath},
           {expand: true, cwd: genBowerPath('bootstrap/dist/fonts/'), src: ['glyphicons*'], dest: fontsPath}
