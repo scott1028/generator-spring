@@ -2,14 +2,9 @@
 
 A generator for Yeoman. View sample generation in [sample-app branch](https://github.com/countableSet/generator-spring/tree/sample-app).
 
-## Project/Build Information
+## Build Information
 
-| Status Name | Status |
-| --- | --- |
-| master branch build | [![Circle CI](https://circleci.com/gh/countableSet/generator-spring.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring) |
-| sample-app branch build | [![Circle CI](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app.svg?style=badge)](https://circleci.com/gh/countableSet/generator-spring/tree/sample-app) |
-| dependencies | [![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) |
-| dev dependencies | [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table) |
+[![Circle CI](https://circleci.com/gh/countableSet/generator-spring.svg?style=shield)](https://circleci.com/gh/countableSet/generator-spring) [![Dependencies](https://david-dm.org/countableset/generator-spring.png)](https://david-dm.org/countableset/generator-spring) [![devDependencies](https://david-dm.org/countableset/generator-spring/dev-status.png)](https://david-dm.org/countableset/generator-spring#info=devDependencies&view=table)
 
 ## Getting started
 - Make sure to have [yeoman](https://github.com/yeoman/yo) installed: `npm install -g yo`
